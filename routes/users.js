@@ -18,7 +18,7 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   models.User.findOne({ where: { id } })
   .then((user) => {
-    res.send('respond with a resource', { user });
+    res.status(200).json(user);
   })
   .catch((err) => {
     next(err);
