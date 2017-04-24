@@ -5,6 +5,8 @@ module.exports = {
     return queryInterface.createTable(
     'items', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+      createdAt: { type: 'TIMESTAMP', allowNull: false, },
+      updatedAt: { type: 'TIMESTAMP', allowNull: false, },
       pantry_id: { type: Sequelize.INTEGER, references: { model: 'pantries', key: 'id' }, onDelete: 'cascade' },
       expire_date: { type: Sequelize.DATE, allowNull: false, },
       percent_used: { type: Sequelize.FLOAT, allowNull: false, default: 0},

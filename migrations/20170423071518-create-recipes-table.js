@@ -5,6 +5,8 @@ module.exports = {
     return queryInterface.createTable(
     'recipes', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+      createdAt: { type: 'TIMESTAMP', allowNull: false, },
+      updatedAt: { type: 'TIMESTAMP', allowNull: false, },
       user_id: { type: Sequelize.INTEGER, references: { model: 'users', key: 'id' }, onDelete: 'cascade' },
       title: { type: Sequelize.STRING(100), allowNull: false, },
       url: { type: Sequelize.TEXT, allowNull: false, },

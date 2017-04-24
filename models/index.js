@@ -1,4 +1,5 @@
 const path = require('path');
+const sequelize = require('../db/connection');
 
 function importModel(sequelize, importPath) {
   return sequelize.import(path.resolve(__dirname, importPath));
