@@ -30,6 +30,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/session', session);
 
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
