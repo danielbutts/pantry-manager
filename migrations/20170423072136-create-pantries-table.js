@@ -5,10 +5,10 @@ module.exports = {
     return queryInterface.createTable(
     'pantries', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-      createdAt: { type: 'TIMESTAMP', allowNull: false, },
-      updatedAt: { type: 'TIMESTAMP', allowNull: false, },
+      createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
+      updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
       user_id: { type: Sequelize.INTEGER, references: { model: 'users', key: 'id' }, onDelete: 'cascade' },
-      is_active: { type: Sequelize.BOOLEAN, allowNull: false, default: true},
+      is_active: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true},
     });
   },
 

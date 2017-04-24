@@ -7,7 +7,7 @@ const router = express.Router();
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   models.User.findAll().then((users) => {
-    res.send('respond with a resource', { users });
+    res.status(200).json(users);
   })
   .catch((err) => {
     next(err);
