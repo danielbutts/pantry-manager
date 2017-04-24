@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production' && !process.env.IS_BUILD) {
-  require('dotenv').config();
+  require('dotenv').config(); // eslint-disable-line global-require
 }
 
 const express = require('express');

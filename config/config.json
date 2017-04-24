@@ -4,13 +4,15 @@
     "password": null,
     "database": "pantry_weasel_dev",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "seederStorage": "sequelize"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "pantry_weasel",
     "host": "process.env.DATABASE_URL",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "seederStorage": "sequelize"
   }
 }

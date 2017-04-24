@@ -14,6 +14,7 @@ module.exports = {
       description: { type: Sequelize.TEXT, allowNull: false, },
       comment: { type: Sequelize.TEXT, allowNull: true, },
       user_rating: { type: Sequelize.INTEGER, allowNull: true, },
+      is_favorite: { type: Sequelize.BOOLEAN, allowNull: false, defualt: false},
     });
   },
 

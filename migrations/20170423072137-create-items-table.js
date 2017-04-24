@@ -12,6 +12,7 @@ module.exports = {
       percent_used: { type: Sequelize.FLOAT, allowNull: false, default: 0},
       quantity: { type: Sequelize.INTEGER, allowNull: false, default: 1},
       units: { type: Sequelize.STRING(50), allowNull: true, },
+      is_favorite: { type: Sequelize.BOOLEAN, allowNull: false, defualt: false},
     });
   },
 
