@@ -53,16 +53,17 @@ router.post('/', (req, res, next) => {
       error.message = 'Email already exists';
       next(error);
       res.send(error);
-    } else {
-      models.User.upsert({
-        first_name,
-        last_name,
-        email,
-        password,
-      }).then((newUser) => {
-        res.send(newUser);
-      });
     }
+
+    console.log(`${first_name} -- ${last_name} -- ${email} -- ${password}`);
+    return models.User.create({
+      first_name,
+      last_name,
+      email,
+      password,
+    }).then((newUser) => {
+      res.send(newUser);
+    });
   }).catch((err) => {
     next(err);
     console.error(err);
