@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: { type: 'TIMESTAMP', allowNull: false, },
     updatedAt: { type: 'TIMESTAMP', allowNull: false, },
     user_id: { type: DataTypes.INTEGER, references: {
-      model: 'user',
+      model: 'User',
       key: 'id',
       deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE,
     }},
