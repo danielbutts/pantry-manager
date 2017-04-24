@@ -1,12 +1,12 @@
 const sequelize = require('../db/connection');
 
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('recipe', {
+  return sequelize.define('recipes', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     createdAt: { type: 'TIMESTAMP', allowNull: false, },
     updatedAt: { type: 'TIMESTAMP', allowNull: false, },
     user_id: { type: DataTypes.INTEGER, references: {
-      model: 'User',
+      model: 'user',
       key: 'id',
       deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE,
     }},

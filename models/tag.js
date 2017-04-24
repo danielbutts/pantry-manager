@@ -1,7 +1,7 @@
 const sequelize = require('../db/connection');
 
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('tag', {
+  return sequelize.define('tags', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     createdAt: { type: 'TIMESTAMP', allowNull: false, },
     updatedAt: { type: 'TIMESTAMP', allowNull: false, },
