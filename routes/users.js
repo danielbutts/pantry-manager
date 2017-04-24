@@ -7,13 +7,20 @@ const router = express.Router();
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   models.User.findAll().then((users) => {
-    users.forEach((user) => {
-      console.log(user);
-    });
-    res.send('respond with a resource');
+    res.send('respond with a resource', { users });
   })
   .catch((err) => {
-    console.error(err);
+    next(err);
+  });
+});
+
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  models.User.findOne({ where: { id } })
+  .then((user) => {
+    res.send('respond with a resource', { user });
+  })
+  .catch((err) => {
     next(err);
   });
 });
