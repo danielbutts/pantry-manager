@@ -69,7 +69,8 @@ router.post('/', (req, res, next) => {
       password: hashedPassword,
     });
   }).then((newUser) => {
-    res.send(newUser);
+    delete newUser.dataValues.password;
+    res.json(newUser);
   }).catch((err) => {
     next(err);
   });
