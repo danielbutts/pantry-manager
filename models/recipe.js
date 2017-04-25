@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
     updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
-    userId: { type: DataTypes.INTEGER, references: {
-      model: 'User',
-      key: 'id',
-      deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE,
-    }},
+    // userId: { type: DataTypes.INTEGER, references: {
+    //   model: 'User',
+    //   key: 'id',
+    //   deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE,
+    // }},
     title: { type: DataTypes.STRING(100), allowNull: false, },
     url: { type: DataTypes.TEXT, allowNull: false, },
     siteRating: { type: DataTypes.INTEGER, allowNull: true, },
