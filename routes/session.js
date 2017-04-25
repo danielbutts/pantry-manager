@@ -48,7 +48,7 @@ const setSession = function (req, res, next) {
     .then(() => {
       delete user.password;
 
-      console.log(req);
+      // console.log(req.session);
       // req.session.userId = user.id;
 
       res.json(user);
