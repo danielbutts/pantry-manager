@@ -1,6 +1,7 @@
 const express = require('express');
 const sequelize = require('../db/connection');
 const models = require('../models')(sequelize);
+const bcrypt = require('bcrypt-as-promised');
 
 const router = express.Router();
 
@@ -54,19 +55,23 @@ router.post('/', (req, res, next) => {
       next(error);
       res.send(error);
     }
+  }).catch((err) => {
+    next(err);
+    console.error(err);
+  });
 
-    console.log(`${first_name} -- ${last_name} -- ${email} -- ${password}`);
+  bcrypt.hash(req.body.password, 12)
+  .then((hashedPassword) => {
     return models.User.create({
       first_name,
       last_name,
       email,
-      password,
-    }).then((newUser) => {
-      res.send(newUser);
+      password: hashedPassword,
     });
+  }).then((newUser) => {
+    res.send(newUser);
   }).catch((err) => {
     next(err);
-    console.error(err);
   });
 });
 
