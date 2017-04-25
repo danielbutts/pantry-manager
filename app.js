@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
-// const session = require('./routes/session');
+const session = require('./routes/session');
 // const recipes = require('./routes/recipes');
 const items = require('./routes/items');
 // const tags = require('./routes/tags');
@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-// app.use('/session', session);
+app.use('/session', session);
 // app.use('/recipes', recipes);
 app.use('/items', items);
 // app.use('/tags', tags);
