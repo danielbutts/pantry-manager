@@ -55,7 +55,6 @@ router.post('/', (req, res, next) => {
       res.send(error);
     }
 
-    console.log(`${first_name} -- ${last_name} -- ${email} -- ${password}`);
     return models.User.create({
       first_name,
       last_name,
