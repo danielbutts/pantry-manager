@@ -19,7 +19,7 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   models.User.findOne({ where: { id } })
   .then((user) => {
-    res.status(200).json(user);
+    res.render('pages/dashboard', { title: 'Pantry Weasel' });
   })
   .catch((err) => {
     next(err);
