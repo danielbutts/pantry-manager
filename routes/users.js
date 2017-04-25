@@ -69,6 +69,7 @@ router.post('/', (req, res, next) => {
       password: hashedPassword,
     });
   }).then((newUser) => {
+    // eslint-disable-next-line no-param-reassign
     delete newUser.dataValues.password;
     res.json(newUser);
   }).catch((err) => {
