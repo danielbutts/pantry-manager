@@ -1,21 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <main>
     <h1><%= title %></h1>
 
     <h3>Edit Item</h3>
     <table>
       <tr>
-        <th>Name</th><th>Quantity</th><th>% Used</th><th>Added</th><th>Expires</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>% Used</th>
+        <th>Added</th>
+        <th>Expires</th>
       </tr>
-        <tr>
-          <td><%= item.name %></td><td><%= item.quantity %> <%= item.units %></td><td><%= item.percent_used %></td>
-          <td><%= item.createdAt %></td><td><%= item.expire_date %></td>
-        </tr>
+      <tr>
+        <td>
+          <%= item.name %>
+        </td>
+        <td>
+          <%= item.quantity %>
+            <%= item.units %>
+        </td>
+        <td>
+          <%= item.percent_used %>
+        </td>
+        <td>
+          <%= item.createdAt %>
+        </td>
+        <td>
+          <%= item.expire_date %>
+        </td>
+      </tr>
     </table>
-  </body>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+</body>
+
 </html>
