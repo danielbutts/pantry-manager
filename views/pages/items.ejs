@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <h3>Contents of Pantry</h3>
+    <table>
+      <tr>
+        <th>Name</th><th>Quantity</th><th>% Used</th><th>Added</th><th>Expires</th>
+      </tr>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><%= item.name %></td><td><%= item.quantity %> <%= item.units %></td><td><%= item.percent_used %></td>
+          <td><%= item.createdAt %></td><td><%= item.expire_date %></td><td><a href="/edit/<%= item.id %>">EDIT</a></td><td><a href="/items/delete/<%= item.id %>">DELETE</a></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
