@@ -27,18 +27,18 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { first_name, last_name, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
   const error = { status: 400 };
 
   if (!email || !email.trim()) {
     error.message = 'Email must not be blank';
     next(error);
     res.send(error);
-  } else if (!first_name || !first_name.trim()) {
+  } else if (!firstName || !firstName.trim()) {
     error.message = 'First Name must not be blank';
     next(error);
     res.send(error);
-  } else if (!last_name || !last_name.trim()) {
+  } else if (!lastName || !lastName.trim()) {
     error.message = 'Last Name must not be blank';
     next(error);
     res.send(error);
@@ -49,27 +49,26 @@ router.post('/', (req, res, next) => {
   }
 
   models.User.findOne({ where: { email } })
-  .then((user) => {
-    if (user) {
+  .then((result) => {
+    if (result) {
       error.message = 'Email already exists';
       next(error);
       res.send(error);
     }
   }).catch((err) => {
     next(err);
-    console.error(err);
   });
 
-  bcrypt.hash(req.body.password, 12)
-  .then((hashedPassword) => {
-    return models.User.create({
-      first_name,
-      last_name,
-      email,
-      password: hashedPassword,
-    });
-  }).then((newUser) => {
-    // eslint-disable-next-line no-param-reassign
+  bcrypt.hash(password, 12)
+  .then(hashedPassword =>
+    models.Pantry.create({})
+    .then((pantry) => {
+      const pantryId = pantry.id;
+      return models.User.create({ firstName, lastName, email, password: hashedPassword, pantryId });
+    }) // eslint-disable-line comma-dangle
+  )
+  .then((user) => {
+    const newUser = user;
     delete newUser.dataValues.password;
     res.json(newUser);
   }).catch((err) => {

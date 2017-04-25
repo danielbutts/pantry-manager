@@ -2,17 +2,12 @@ const sequelize = require('../db/connection');
 
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('items', {
-    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     name: { type: DataTypes.STRING(50), allowNull: false },
-    createdAt: { type: 'TIMESTAMP', allowNull: false },
-    updatedAt: { type: 'TIMESTAMP', allowNull: false },
-    pantry_id: { type: DataTypes.INTEGER, references: {
-      model: 'Pantry',
-      key: 'id',
-      deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE
-    }},
-    expire_date: { type: 'TIMESTAMP', allowNull: false },
-    percent_used: { type: DataTypes.FLOAT, allowNull: false, default: 0},
+    createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+    updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+    addDate: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+    expireDate: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+    percentUsed: { type: DataTypes.FLOAT, allowNull: false, default: 0},
     quantity: { type: DataTypes.INTEGER, allowNull: false, default: 1},
     units: { type: DataTypes.STRING(50), allowNull: true },
   }, {

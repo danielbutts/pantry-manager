@@ -24,12 +24,15 @@ function displayDate(date) {
 router.get('/pantry/:id', (req, res, next) => {
   const title = 'Pantry Contents';
   const id = req.params.id;
-  models.Item.findAll({ where: { pantry_id: id } })
+  models.Item.findAll({ where: { pantryId: id } })
   .then((results) => {
     const items = results.map((el) => {
       const item = el.dataValues;
       item.createdAt = displayDate(item.createdAt);
-      item.expire_date = displayDate(item.expire_date);
+      item.expireDate = displayDate(item.expireDate);
+      if (item.units !== null && item.quantity > 1) {
+        item.units += 's';
+      }
       return item;
     });
     res.render('pages/items', { items, title });
@@ -46,7 +49,7 @@ router.get('/:id', (req, res, next) => {
   .then((result) => {
     const item = result.dataValues;
     item.createdAt = displayDate(item.createdAt);
-    item.expire_date = displayDate(item.expire_date);
+    item.expireDate = displayDate(item.expireDate);
     res.render('pages/edit-item', { item, title });
   })
   .catch((err) => {
@@ -75,12 +78,12 @@ router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   const { pantryId, addDate, expireDate, quantity, units, percentUsed } = req.body;
   return models.Item.update({
-    pantry_id: pantryId,
-    add_date: addDate,
-    expire_date: expireDate,
+    pantryId,
+    addDate,
+    expireDate,
     quantity,
     units,
-    percent_used: percentUsed,
+    percentUsed,
   }, {
     where: { id },
     returning: true,

@@ -15,7 +15,7 @@
       <% items.forEach((item) => { %>
         <tr>
           <td><%= item.name %></td><td><%= item.quantity %> <%= item.units %></td><td><%= item.percent_used %></td>
-          <td><%= item.createdAt %></td><td><%= item.expire_date %></td><td><a href="/edit/<%= item.id %>">EDIT</a></td><td><a href="/items/delete/<%= item.id %>">DELETE</a></td>
+          <td><%= item.createdAt %></td><td><%= item.expire_date %></td><td><a href="/items/<%= item.id %>">EDIT</a></td><td><a href="#">DELETE</a></td>
         </tr>
       <% }) %>
     </table>

@@ -6,12 +6,12 @@ const models = require('../models')(sequelize);
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-const deleteSession = function (req, res) {
+const deleteSession = (req, res) => {
   req.session = null;
   res.status(200).json(true);
 };
 
-const getSession = function (req, res) {
+const getSession = (req, res) => {
   if (req.session.userId) {
     res.json(true);
   } else {
@@ -19,7 +19,7 @@ const getSession = function (req, res) {
   }
 };
 
-const setSession = function (req, res, next) {
+const setSession = (req, res, next) => {
   const { email, password } = req.body;
   const error = { status: 400 };
 
@@ -47,9 +47,6 @@ const setSession = function (req, res, next) {
     })
     .then(() => {
       delete user.password;
-
-      // console.log(req.session);
-      // req.session.userId = user.id;
 
       res.json(user);
     })

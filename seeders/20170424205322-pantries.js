@@ -11,8 +11,8 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return [
       queryInterface.bulkInsert('pantries', [
-        { user_id: 1, is_active: true },
-        { user_id: 2, is_active: true },
+        { isActive: true },
+        { isActive: true },
       ]),
     ];
   },

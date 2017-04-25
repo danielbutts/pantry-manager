@@ -1,17 +1,21 @@
+const path = require('path');
 const sequelize = require('../db/connection');
+const User = importModel(sequelize, './user')
+const Item = importModel(sequelize, './item')
+
+function importModel(sequelize, importPath) {
+  return sequelize.import(path.resolve(__dirname, importPath));
+}
 
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('pantries', {
-    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    createdAt: { type: 'TIMESTAMP', allowNull: false, },
-    updatedAt: { type: 'TIMESTAMP', allowNull: false, },
-    user_id: { type: DataTypes.INTEGER, references: {
-      model: 'User',
-      key: 'id',
-      deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE,
-    }},
-    is_active: { type: DataTypes.BOOLEAN, allowNull: false, default: true},
+  const Pantry = sequelize.define('pantries', {
+    createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+    updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+    isActive: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
   }, {
     freezeTableName: true,
   });
+  Pantry.hasMany(User, {as: 'Owners'})
+  Pantry.hasMany(Item, {as: 'Contents'})
+  return Pantry;
 };

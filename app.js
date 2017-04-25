@@ -12,11 +12,11 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
-const session = require('./routes/session');
-const recipes = require('./routes/recipes');
+// const session = require('./routes/session');
+// const recipes = require('./routes/recipes');
 const items = require('./routes/items');
-const tags = require('./routes/tags');
-const pantries = require('./routes/pantries');
+// const tags = require('./routes/tags');
+// const pantries = require('./routes/pantries');
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(cookieSession({
   name: 'pantry-weasel',
   secret: process.env.SESSION_SECRET,
-  secure: app.get('env') === 'production'
+  secure: app.get('env') === 'production',
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
