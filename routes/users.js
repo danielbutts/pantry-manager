@@ -59,7 +59,7 @@ router.post('/', (req, res, next) => {
     next(err);
     console.error(err);
   });
-
+  
   bcrypt.hash(req.body.password, 12)
   .then((hashedPassword) => {
     return models.User.create({
