@@ -12,6 +12,7 @@ const deleteSession = (req, res) => {
 };
 
 const getSession = (req, res) => {
+  console.log(req.session.userId);
   if (req.session.userId) {
     res.json(true);
   } else {
@@ -48,6 +49,8 @@ const setSession = (req, res, next) => {
     .then(() => {
       delete user.password;
 
+      req.session.userId = user.id;
+      console.log(req.session.userId);
       res.json(user);
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
