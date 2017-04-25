@@ -51,7 +51,7 @@ const setSession = (req, res, next) => {
 
       req.session.userId = user.id;
       console.log(req.session.userId);
-      res.json(user);
+      res.render('pages/dashboard', { title: 'Pantry Weasel' });
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
       error.message = 'Password must not be blank';
