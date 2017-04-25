@@ -26,16 +26,21 @@ router.get('/pantry/:id', (req, res, next) => {
   const id = req.params.id;
   models.Item.findAll({ where: { pantryId: id } })
   .then((results) => {
-    const items = results.map((el) => {
-      const item = el.dataValues;
-      item.createdAt = displayDate(item.createdAt);
-      item.expireDate = displayDate(item.expireDate);
-      if (item.units !== null && item.quantity > 1) {
-        item.units += 's';
-      }
-      return item;
-    });
-    res.render('pages/items', { items, title });
+    results[0].getTags().then(tags => {
+      console.log(tags);
+      const items = results.map((el) => {
+        const item = el.dataValues;
+        item.createdAt = displayDate(item.createdAt);
+        item.expireDate = displayDate(item.expireDate);
+        if (item.units !== null && item.quantity > 1) {
+          item.units += 's';
+        }
+        return item;
+      });
+      console.log(items);
+      res.render('pages/items', { items, title });
+    })
+
   })
   .catch((err) => {
     next(err);
