@@ -1,34 +1,70 @@
-// const bcrypt = require('bcrypt-as-promised');
 const express = require('express');
+const bcrypt = require('bcrypt-as-promised');
+const sequelize = require('../db/connection');
+const models = require('../models')(sequelize);
 
+// eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  if (req.session.userId !== undefined) {
-    res.status(200).json(true);
-  } else {
-    res.status(200).json(false);
-  }
-});
+const deleteSession = function (req, res) {
+  req.session = null;
+  res.status(200).json(true);
+};
 
-router.post('/', (req, res, next) => {
+const getSession = function (req, res) {
+  if (req.session.userId) {
+    res.json(true);
+  } else {
+    res.json(false);
+  }
+};
+
+const setSession = function (req, res, next) {
   const { email, password } = req.body;
+  const error = { status: 400 };
 
   if (!email || !email.trim()) {
-    next({
-      status: 400,
-      message: 'Email must not be blank',
-    });
-    res.send('need a email');
+    error.message = 'Email must not be blank';
+    next(error);
   }
 
   if (!password) {
-    next({
-      status: 400,
-      message: 'Password must not be blank',
-    });
-    res.send('need a password');
+    error.message = 'Password must not be blank';
+    next(error);
   }
-});
+
+  let user;
+
+  models.User.findOne({ where: { email } })
+    .then((userEmail) => {
+      if (!userEmail) {
+        error.message = 'Bad email or password';
+        next(error);
+        res.json(error);
+      }
+      user = userEmail.dataValues;
+      return bcrypt.compare(password, user.password);
+    })
+    .then(() => {
+      delete user.password;
+
+      console.log(req);
+      // req.session.userId = user.id;
+
+      res.json(user);
+    })
+    .catch(bcrypt.MISMATCH_ERROR, () => {
+      error.message = 'Password must not be blank';
+      next(error);
+      res.send(error);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+router.get('/', getSession);
+router.post('/', setSession);
+router.delete('/', deleteSession);
 
 module.exports = router;
