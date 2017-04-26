@@ -12,7 +12,6 @@ const deleteSession = (req, res) => {
 };
 
 const getSession = (req, res) => {
-  console.log(req.session.userId);
   if (req.session.userId) {
     res.json(true);
   } else {
@@ -21,13 +20,11 @@ const getSession = (req, res) => {
 };
 
 const setSession = (req, res, next) => {
-  const title = 'Pantry Weasel'
   const { email, password } = req.body;
   const error = { status: 400 };
 
   if (!email || !email.trim()) {
     error.message = 'Email must not be blank';
-    console.log(error);
     res.render('pages/index', { error });
   }
 
@@ -51,7 +48,6 @@ const setSession = (req, res, next) => {
       delete user.password;
 
       req.session.userId = user.id;
-      console.log(req.session.userId);
       res.redirect(`../users/${user.id}`);
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
