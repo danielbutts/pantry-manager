@@ -8,6 +8,13 @@
       <h2 class="text-center">Pantry Weasel wants you!</h2>
     </header>
     <main>
+      <% if (error) { %>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 alert alert-danger" align="center">
+              <p><%= error.message %></p>
+            </div>
+        </div>
+      <%}%>
       <% include ../partials/newUser %>
     </main>
     <footer>
