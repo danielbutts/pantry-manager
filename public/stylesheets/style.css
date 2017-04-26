@@ -77,3 +77,12 @@ nav.navbar-findcond span.badge.new {
     background: rgba(255, 0, 0, 0.8);
     color: #fff;
 }
+
+img.double-solid {
+  border-style: double;
+  border: 1px solid darkgray;
+}
+
+span.orange {
+  color: darkorange;
+}

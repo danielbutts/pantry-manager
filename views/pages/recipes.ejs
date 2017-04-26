@@ -1,37 +1,49 @@
 <% include ../partials/top %>
 <main>
-  <h1>Recipe Results</h1>
-
-  <table>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Ingredients</th>
-      <th>Site Rating</th>
-      <th>Prep Time</th>
-    </tr>
-    <% recipes.forEach((recipe) => { %>
-      <tr>
-        <td>
-          <img src="<%= recipe.imageUrl %>">
-        </td>
-        <td>
-          <%= recipe.recipeName %>
-        </td>
-        <td>
-          <% recipe.ingredients.forEach((ingredient) => { %>
-            <div><%= ingredient %></div>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 text-center">
+      <h3>Recipe Results</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 text-center">
+      <table class="table">
+        <tr>
+          <th></th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Ingredients</th>
+          <th class="text-center">Yummly<br>Rating</th>
+          <th class="text-center">Cook/Prep<br>Time (min)</th>
+          <th></th>
+        </tr>
+        <% recipes.forEach((recipe) => { %>
+          <tr>
+            <td class="text-left col-xs-1">
+              <img class="img-rounded double-solid" src="<%= recipe.imageUrl %>">
+            </td>
+            <td class="text-left col-xs-2">
+              <%= recipe.recipeName %>
+            </td>
+            <td class="text-left col-xs-4">
+              <% recipe.ingredients.forEach((ingredient) => { %>
+                <%= ingredient %>,
+              <% }) %>
+            </td>
+            <td class="text-center col-xs-2">
+              <% for (let i=0; i < recipe.siteRating; i++) { %>
+                <span class="glyphicon glyphicon-star orange" aria-hidden="true"></span>
+              <% } %>
+            </td>
+            <td class="text-center col-xs-1">
+              <%= Math.floor(recipe.prepTime/60) %>
+            </td>
+            <td class="text-center col-xs-1">
+              <button type="button" class="btn btn-primary">Favorite</button>
+            </td>
+          </tr>
           <% }) %>
-        </td>
-        <td>
-          <%= recipe.siteRating %>
-        </td>
-        <td>
-          <%= recipe.prepTime %>
-        </td>
-        <td><a href="#">FAVORITE</a></td>
-      </tr>
-      <% }) %>
-  </table>
+      </table>
+  </div>
+</div>
 </main>
 <% include ../partials/footer %>
