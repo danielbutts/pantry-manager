@@ -70,7 +70,7 @@ router.post('/', (req, res, next) => {
   .then((user) => {
     const newUser = user;
     delete newUser.dataValues.password;
-    res.json(newUser);
+    res.redirect(`/users/${user.id}`);
   }).catch((err) => {
     next(err);
   });
