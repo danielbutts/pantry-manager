@@ -21,17 +21,19 @@ const getSession = (req, res) => {
 };
 
 const setSession = (req, res, next) => {
+  const title = 'Pantry Weasel'
   const { email, password } = req.body;
   const error = { status: 400 };
 
   if (!email || !email.trim()) {
     error.message = 'Email must not be blank';
-    next(error);
+    console.log(error);
+    res.render('pages/index', { error });
   }
 
   if (!password) {
     error.message = 'Password must not be blank';
-    next(error);
+    res.render('pages/index', { error });
   }
 
   let user;
@@ -40,8 +42,7 @@ const setSession = (req, res, next) => {
     .then((userEmail) => {
       if (!userEmail) {
         error.message = 'Bad email or password';
-        next(error);
-        res.json(error);
+        res.render('pages/index', { error });
       }
       user = userEmail.dataValues;
       return bcrypt.compare(password, user.password);
@@ -55,8 +56,7 @@ const setSession = (req, res, next) => {
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
       error.message = 'Password must not be blank';
-      next(error);
-      res.send(error);
+      res.render('pages/index', { error });
     })
     .catch((err) => {
       next(err);
