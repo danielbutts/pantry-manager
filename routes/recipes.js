@@ -1,6 +1,6 @@
 const express = require('express');
-const sequelize = require('../db/connection');
-const models = require('../models')(sequelize);
+// const sequelize = require('../db/connection');
+// const models = require('../models')(sequelize);
 const rp = require('request-promise');
 
 require('dotenv').config(); // eslint-disable-line global-require
