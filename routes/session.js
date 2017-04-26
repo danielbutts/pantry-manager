@@ -51,7 +51,7 @@ const setSession = (req, res, next) => {
       res.redirect(`../users/${user.id}`);
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
-      error.message = 'Password must not be blank';
+      error.message = 'Bad email or password';
       res.render('pages/index', { error });
     })
     .catch((err) => {
