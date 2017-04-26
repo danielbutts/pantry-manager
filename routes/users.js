@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   models.User.findOne({ where: { id } })
-  .then((user) => {
+  .then(() => {
     res.render('pages/dashboard', { title: 'Pantry Weasel' });
   })
   .catch((err) => {
@@ -32,48 +32,42 @@ router.post('/', (req, res, next) => {
 
   if (!email || !email.trim()) {
     error.message = 'Email must not be blank';
-    next(error);
-    res.send(error);
+    res.render('pages/new-user', { error });
   } else if (!firstName || !firstName.trim()) {
     error.message = 'First Name must not be blank';
-    next(error);
-    res.send(error);
+    res.render('pages/new-user', { error });
   } else if (!lastName || !lastName.trim()) {
     error.message = 'Last Name must not be blank';
-    next(error);
-    res.send(error);
+    res.render('pages/new-user', { error });
   } else if (!password || password.length < 8) {
     error.message = 'Password must be at least 8 chars long';
-    next(error);
-    res.send(error);
+    res.render('pages/new-user', { error });
+  } else {
+    models.User.findOne({ where: { email } })
+    .then((result) => {
+      if (!result) {
+        bcrypt.hash(password, 12)
+        .then(hashedPassword =>
+          models.Pantry.create({})
+          .then((pantry) => {
+            const pantryId = pantry.id;
+            return models.User.create(
+              { firstName, lastName, email, password: hashedPassword, pantryId });
+          }) // eslint-disable-line comma-dangle
+        )
+        .then((user) => {
+          const newUser = user;
+          delete newUser.dataValues.password;
+          res.redirect(`/users/${user.id}`);
+        });
+      } else {
+        error.message = 'Email already exists';
+        res.render('pages/new-user', { error });
+      }
+    }).catch((err) => {
+      next(err);
+    });
   }
-
-  models.User.findOne({ where: { email } })
-  .then((result) => {
-    if (result) {
-      error.message = 'Email already exists';
-      next(error);
-      res.send(error);
-    }
-  }).catch((err) => {
-    next(err);
-  });
-
-  bcrypt.hash(password, 12)
-  .then(hashedPassword =>
-    models.Pantry.create({})
-    .then((pantry) => {
-      const pantryId = pantry.id;
-      return models.User.create({ firstName, lastName, email, password: hashedPassword, pantryId });
-    }) // eslint-disable-line comma-dangle
-  )
-  .then((user) => {
-    const newUser = user;
-    delete newUser.dataValues.password;
-    res.redirect(`/users/${user.id}`);
-  }).catch((err) => {
-    next(err);
-  });
 });
 
 module.exports = router;
