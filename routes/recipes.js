@@ -16,6 +16,7 @@ router.get('/', (req, res, next) => {
   const baseUrl = 'http://api.yummly.com/v1/api/recipes?';
   const apiId = '763aca63';
   const apiKey = '5d6cfc3b41400c18246cdfca347322d7';
+  const userId = req.session.userId;
 
   let searchTerms = req.query.ingredients.split(',');
   searchTerms = searchTerms.map(el => el.trim());
@@ -52,7 +53,7 @@ router.get('/', (req, res, next) => {
     // recipes.concat(parseSearchResult(apiResults));
 
     // TODO add recipes to template and render.
-    res.render('../views/pages/recipes', { recipes });
+    res.render('../views/pages/recipes', { recipes, userId });
   })
   .catch((err) => {
     next(err);
