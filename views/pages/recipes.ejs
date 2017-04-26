@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pantry Weasel</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script defer type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+  </script>
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+  <main>
+    <h1>Recipe Results</h1>
+
+    <table>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Site Rating</th>
+        <th>Prep Time</th>
+      </tr>
+      <% recipes.forEach((recipe) => { %>
+        <tr>
+          <td>
+            <img src="<%= recipe.imageUrl %>">
+          </td>
+          <td>
+            <%= recipe.recipeName %>
+          </td>
+          <td>
+            <% recipe.ingredients.forEach((ingredient) => { %>
+              <div><%= ingredient %></div>
+            <% }) %>
+          </td>
+          <td>
+            <%= recipe.siteRating %>
+          </td>
+          <td>
+            <%= recipe.prepTime %>
+          </td>
+          <td><a href="#">FAVORITE</a></td>
+        </tr>
+        <% }) %>
+    </table>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+</body>
+
+</html>

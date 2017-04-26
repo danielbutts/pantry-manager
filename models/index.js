@@ -72,6 +72,14 @@ const Pantry = sequelize.define('pantries', {
 Pantry.hasMany(User)
 Pantry.hasMany(Item)
 
+const RequestCache = sequelize.define('requestCache', {
+  createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+  updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+  searchTerm: { type: Sequelize.DataTypes.STRING(50), allowNull: false},
+}, {
+  freezeTableName: true,
+});
+
 module.exports = function getModels(sequelize) {
   return {
     User,
@@ -80,5 +88,6 @@ module.exports = function getModels(sequelize) {
     Recipe,
     Tag,
     Ingredient,
+    RequestCache,
   };
 };

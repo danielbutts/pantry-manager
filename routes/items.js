@@ -26,7 +26,8 @@ router.get('/pantry/:id', (req, res, next) => {
   const id = req.params.id;
   models.Item.findAll({ where: { pantryId: id } })
   .then((results) => {
-    results[0].getTags().then(tags => {
+    results[0].getTags()
+    .then((tags) => {
       console.log(tags);
       const items = results.map((el) => {
         const item = el.dataValues;
@@ -39,8 +40,7 @@ router.get('/pantry/:id', (req, res, next) => {
       });
       console.log(items);
       res.render('pages/items', { items, title });
-    })
-
+    });
   })
   .catch((err) => {
     next(err);
