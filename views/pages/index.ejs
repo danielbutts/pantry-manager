@@ -1,19 +1,23 @@
 <% include ../partials/top %>
 <main>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-3">
-        <h1>Welcome to Pantry Weasel</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-4">
-        <form class="search" action="/recipes" method="get">
-          <button type="submit" class="btn btn-primary">Search</button>
-          <input type="text" name="ingredients" value="">
-        </form>
-      </div>
-    </div>
+  <div class="row-fluid">
+	   <div class="bg">
+       <div class="container">
+         <div class="row">
+           <div class="col-lg-6 col-lg-offset-3">
+             <h1>Welcome to Pantry Weasel</h1>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-lg-6 col-lg-offset-4">
+             <form class="search" action="/recipes" method="get">
+               <button type="submit" class="btn btn-primary">Search</button>
+               <input type="text" name="ingredients" value="">
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
   </div>
 </main>
 <% include ../partials/footer %>
