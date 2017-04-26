@@ -1,53 +1,38 @@
-<!DOCTYPE html>
-<html>
+<% include ../partials/top %>
+<main>
+  <h1><%= title %></h1>
 
-<head>
-  <% include ../partials/head %>
-</head>
-
-<body>
-  <header>
-    <% include ../partials/header %>
-  </header>
-  <main>
-    <h1><%= title %></h1>
-
-    <h3>Contents of Pantry</h3>
-    <table>
+  <h3>Contents of Pantry</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>% Used</th>
+      <th>Added</th>
+      <th>Expires</th>
+    </tr>
+    <% items.forEach((item) => { %>
       <tr>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>% Used</th>
-        <th>Added</th>
-        <th>Expires</th>
+        <td>
+          <%= item.name %>
+        </td>
+        <td>
+          <%= item.quantity %>
+            <%= item.units %>
+        </td>
+        <td>
+          <%= item.percent_used %>
+        </td>
+        <td>
+          <%= item.createdAt %>
+        </td>
+        <td>
+          <%= item.expire_date %>
+        </td>
+        <td><a href="/items/<%= item.id %>">EDIT</a></td>
+        <td><a href="#">DELETE</a></td>
       </tr>
-      <% items.forEach((item) => { %>
-        <tr>
-          <td>
-            <%= item.name %>
-          </td>
-          <td>
-            <%= item.quantity %>
-              <%= item.units %>
-          </td>
-          <td>
-            <%= item.percent_used %>
-          </td>
-          <td>
-            <%= item.createdAt %>
-          </td>
-          <td>
-            <%= item.expire_date %>
-          </td>
-          <td><a href="/items/<%= item.id %>">EDIT</a></td>
-          <td><a href="#">DELETE</a></td>
-        </tr>
-        <% }) %>
-    </table>
-  </main>
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
-</body>
-
-</html>
+      <% }) %>
+  </table>
+</main>
+<% include ../partials/footer %>
