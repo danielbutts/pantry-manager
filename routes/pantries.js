@@ -5,8 +5,12 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('pantry route works');
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const userFirstName = req.session.firstName;
+  let error;
+
+  res.render('pages/pantry', { error, userFirstName })
 });
 
 module.exports = router;
