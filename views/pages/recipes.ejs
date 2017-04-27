@@ -1,7 +1,7 @@
 <% include ../partials/top %>
 <main>
   <h1>Recipe Results</h1>
-
+  <hr>
   <table>
     <tr>
       <th></th>
@@ -11,27 +11,27 @@
       <th>Prep Time</th>
     </tr>
     <% recipes.forEach((recipe) => { %>
-      <tr>
-        <td>
-          <img src="<%= recipe.imageUrl %>">
-        </td>
-        <td>
-          <%= recipe.recipeName %>
-        </td>
-        <td>
-          <% recipe.ingredients.forEach((ingredient) => { %>
-            <div><%= ingredient %></div>
-          <% }) %>
-        </td>
-        <td>
-          <%= recipe.siteRating %>
-        </td>
-        <td>
-          <%= recipe.prepTime %>
-        </td>
-        <td><a href="#">FAVORITE</a></td>
-      </tr>
-      <% }) %>
+    <tr>
+      <td>
+        <img src="<%= recipe.imageUrl %>">
+      </td>
+      <td>
+        <%= recipe.recipeName %>
+      </td>
+      <td>
+        <% recipe.ingredients.forEach((ingredient) => { %>
+          <div><%= ingredient %></div>
+        <% }) %>
+      </td>
+      <td>
+        <%= recipe.siteRating %>
+      </td>
+      <td>
+        <%= recipe.prepTime %>
+      </td>
+      <td><a href="#">FAVORITE</a></td>
+    </tr>
+    <% }) %>
   </table>
 </main>
 <% include ../partials/footer %>
