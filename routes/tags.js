@@ -22,7 +22,10 @@ function displayDate(date) {
 }
 
 router.get('/item/:id', (req, res, next) => {
-  const userFirstName = req.session.firstName;
+  const currentUser = {
+  firstName: req.session.firstName,
+  userId: req.session.userId,
+};
   const title = 'Item Tags';
   // const id = req.params.id;
   models.Tag.findAll({
@@ -41,7 +44,7 @@ router.get('/item/:id', (req, res, next) => {
       }
       return item;
     });
-    res.render('pages/items', { items, title, userFirstName });
+    res.render('pages/items', { items, title, currentUser });
   })
   .catch((err) => {
     next(err);
@@ -51,14 +54,17 @@ router.get('/item/:id', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const title = 'Edit Item';
   const id = req.params.id;
-  const userFirstName = req.session.firstName;
+  const currentUser = {
+  firstName: req.session.firstName,
+  userId: req.session.userId,
+};
 
   models.Item.findOne({ where: { id } })
   .then((result) => {
     const item = result.dataValues;
     item.createdAt = displayDate(item.createdAt);
     item.expireDate = displayDate(item.expireDate);
-    res.render('pages/edit-item', { item, title, userFirstName });
+    res.render('pages/edit-item', { item, title, currentUser });
   })
   .catch((err) => {
     next(err);
