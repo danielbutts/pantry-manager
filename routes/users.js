@@ -6,7 +6,7 @@ const checkSession = require('./session').checkSession;
 
 const router = express.Router();
 
-router.post('/', (req, res, next) => {
+const addNewUser = (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   const error = { status: 400 };
   const userId = req.session.userId;
@@ -50,20 +50,18 @@ router.post('/', (req, res, next) => {
       next(err);
     });
   }
-});
+};
 
-router.use(checkSession);
-
-router.get('/', (req, res, next) => {
+const getUsers = (req, res, next) => {
   models.User.findAll().then((users) => {
     res.status(200).json(users);
   })
   .catch((err) => {
     next(err);
   });
-});
+};
 
-router.get('/:id', (req, res, next) => {
+const getUserDashboard = (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.userId;
   models.User.findOne({ where: { id } })
@@ -73,6 +71,11 @@ router.get('/:id', (req, res, next) => {
   .catch((err) => {
     next(err);
   });
-});
+};
+
+router.post('/', addNewUser);
+router.get('/', getUsers);
+router.use(checkSession);
+router.get('/:id', getUserDashboard);
 
 module.exports = router;
