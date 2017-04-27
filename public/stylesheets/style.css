@@ -12,6 +12,11 @@ input.form-control.btn {
   color: #fff;
 }
 
+.btn-primary {
+  background-color: rgb(73, 139, 227);
+  color: #fff;
+}
+
 nav.navbar-findcond {
   background: #3d2023;
   border-color: #ccc;
