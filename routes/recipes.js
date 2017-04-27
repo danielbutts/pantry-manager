@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
   const apiId = process.env.API_ID;
   const apiKey = process.env.API_KEY;
   const max = 5;
+  const userId = req.session.userId;
 
   const term = req.query.ingredients;
   // let searchTerms = req.query.ingredients.split(',');
@@ -48,7 +49,7 @@ router.get('/', (req, res, next) => {
         recipes.push(recipe);
       });
     });
-    res.render('../views/pages/recipes', { recipes });
+    res.render('../views/pages/recipes', { recipes, userId });
     return recipes;
   })
   .then((recipes) => {

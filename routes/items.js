@@ -26,21 +26,16 @@ router.get('/pantry/:id', (req, res, next) => {
   const id = req.params.id;
   models.Item.findAll({ where: { pantryId: id } })
   .then((results) => {
-    results[0].getTags()
-    .then((tags) => {
-      console.log(tags);
-      const items = results.map((el) => {
-        const item = el.dataValues;
-        item.createdAt = displayDate(item.createdAt);
-        item.expireDate = displayDate(item.expireDate);
-        if (item.units !== null && item.quantity > 1) {
-          item.units += 's';
-        }
-        return item;
-      });
-      console.log(items);
-      res.render('pages/items', { items, title });
+    const items = results.map((el) => {
+      const item = el.dataValues;
+      item.createdAt = displayDate(item.createdAt);
+      item.expireDate = displayDate(item.expireDate);
+      if (item.units !== null && item.quantity > 1) {
+        item.units += 's';
+      }
+      return item;
     });
+    res.render('pages/items', { items, title });
   })
   .catch((err) => {
     next(err);
@@ -50,12 +45,14 @@ router.get('/pantry/:id', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const title = 'Edit Item';
   const id = req.params.id;
+  const userId = req.session.userId;
+
   models.Item.findOne({ where: { id } })
   .then((result) => {
     const item = result.dataValues;
     item.createdAt = displayDate(item.createdAt);
     item.expireDate = displayDate(item.expireDate);
-    res.render('pages/edit-item', { item, title });
+    res.render('pages/edit-item', { item, title, userId });
   })
   .catch((err) => {
     next(err);

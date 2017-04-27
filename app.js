@@ -12,9 +12,11 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
-const session = require('./routes/session');
+const session = require('./routes/session').router;
+const checkSession = require('./routes/session').checkSession;
 const recipes = require('./routes/recipes');
 const items = require('./routes/items');
+
 // const tags = require('./routes/tags');
 // const pantries = require('./routes/pantries');
 
@@ -38,9 +40,10 @@ app.use(cookieSession({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
-app.use('/recipes', recipes);
 app.use('/session', session);
+app.use('/users', users);
+app.use(checkSession);
+app.use('/recipes', recipes);
 app.use('/items', items);
 // app.use('/tags', tags);
 // app.use('/pantries', pantries);
@@ -54,14 +57,14 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('pages/error');
+  res.render('pages/error', { error: res.locals.error, message: res.locals.message });
 });
 
 module.exports = app;
