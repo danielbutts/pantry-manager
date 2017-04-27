@@ -4,7 +4,12 @@
     <div class="jumbotron">
       <h3 class='text-left'>Hi <%= currentUser.firstName %>! This is your pantry:</h3>
     </div>
-    <p><%= currentUser.pantryItems %></p>
+    <% currentUser.pantryItems.forEach((item) => { %>
+      <ul>
+        <strong><%= item.name %></strong>
+        <li>Qty: <%= item.quantity%> <%= item.units%></li>
+      </ul>
+    <% }); %>
   </div>
 </main>
 <% include ../partials/footer %>
