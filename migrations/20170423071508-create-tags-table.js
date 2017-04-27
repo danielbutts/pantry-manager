@@ -7,9 +7,9 @@ module.exports = {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
       updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
-      name: { type: Sequelize.STRING(50), allowNull: false },
+      name: { type: Sequelize.STRING(255), allowNull: false },
       isDefault: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
-      tagType: { type: Sequelize.STRING(50), allowNull: false },
+      tagType: { type: Sequelize.STRING(255), allowNull: false },
     });
   },
 
