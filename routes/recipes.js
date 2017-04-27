@@ -15,9 +15,9 @@ router.get('/', (req, res, next) => {
   const apiKey = process.env.API_KEY;
   const max = 20;
   const currentUser = {
-  firstName: req.session.firstName,
-  userId: req.session.userId,
-};
+    firstName: req.session.firstName,
+    userId: req.session.userId,
+  };
   const term = req.query.ingredients;
   const recipes = [];
 
@@ -30,7 +30,6 @@ router.get('/', (req, res, next) => {
     const matches = apiResult.matches;
 
     matches.forEach((thing) => {
-      console.log(thing);
       const title = thing.recipeName;
       const ingredients = thing.ingredients;
       const siteRating = parseInt(thing.rating, 10);
