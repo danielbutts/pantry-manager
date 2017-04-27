@@ -7,6 +7,11 @@ a {
   color: #00B7FF;
 }
 
+input.form-control.btn {
+  background-color: rgb(73, 139, 227);
+  color: #fff;
+}
+
 nav.navbar-findcond {
   background: #3d2023;
   border-color: #ccc;
