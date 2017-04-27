@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
   const baseUrl = process.env.API_URL;
   const apiId = process.env.API_ID;
   const apiKey = process.env.API_KEY;
-  const max = 1;
+  const max = 20;
   const userId = req.session.userId;
   const term = req.query.ingredients;
   const recipes = [];
@@ -37,10 +37,7 @@ router.get('/', (req, res, next) => {
       }
       const recipeId = thing.id;
       const prepTime = thing.totalTimeInSeconds;
-      let course;
-      if (thing.attributes.course !== undefined) {
-        course = thing.attributes.course[0];
-      }
+      const attributes = thing.attributes;
       const flavors = thing.flavors;
 
       models.Recipe.findOne({ where: { recipeId } })
@@ -57,30 +54,43 @@ router.get('/', (req, res, next) => {
               });
             }
 
-            // add tags
-
-            if (course !== null) {
-              console.log('course not null', course);
-              models.Tag.findOne({ where: { name: course, tagType: 'course' } })
-              .then((tagMatch) => {
-                console.log('tagMatch', tagMatch);
-                if (tagMatch === null) { // new tag. save to database.
-                  console.log('tagMatch is null', course);
-                  if (course !== undefined) {
-                    models.Tag.create({ name: course, tagType: 'course' })
+            // add course to tags
+            if (attributes !== null) {
+              console.log(attributes);
+              Object.keys(attributes).forEach((attribute) => {
+                console.log(attribute, attributes[attribute][0]);
+                models.Tag.findOne({ where: {
+                  name: attributes[attribute][0],
+                  tagType: attribute } })
+                .then((tagMatch) => {
+                  if (tagMatch === null) { // new tag. save to database.
+                    models.Tag.create({ name: attributes[attribute][0], tagType: attribute })
                     .then((insertedTag) => {
-                      // const tagId = insertedTag.dataValues.id;
-                      // models.RecipesTag.create({ recipeId: id, tagId }).then();
-                      insertedRecipe.addTag(insertedTag).then((recipeTag) => {
-                        console.log('HERE', recipeTag);
-                      });
+                      insertedRecipe.addTag(insertedTag).then();
                     });
                   }
-                }
-              })
-              .catch((err) => {
-                console.log(err);
-                next(err);
+                })
+                .catch((err) => {
+                  next(err);
+                });
+              });
+            }
+
+            // add flavors to tags
+            if (flavors !== null) {
+              Object.keys(flavors).forEach((flavor) => {
+                models.Tag.findOne({ where: { name: flavor, tagType: 'flavor' } })
+                .then((tagMatch) => {
+                  if (tagMatch === null) { // new tag. save to database.
+                    models.Tag.create({ name: flavor, tagType: 'flavor' })
+                    .then((insertedTag) => {
+                      insertedRecipe.addTag(insertedTag).then();
+                    });
+                  }
+                })
+                .catch((err) => {
+                  next(err);
+                });
               });
             }
           });
@@ -93,7 +103,7 @@ router.get('/', (req, res, next) => {
         imageUrl,
         recipeId,
         prepTime,
-        course,
+        attributes,
         flavors,
       });
     });

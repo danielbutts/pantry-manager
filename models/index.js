@@ -8,7 +8,6 @@ const Recipe = require('./Recipe');
 const Pantry = require('./Pantry');
 const Tag = require('./Tag');
 const Item = require('./Item');
-const RequestCache = require('./RequestCache');
 const RecipeTags = require('./RecipeTags');
 
 Recipe.hasMany(Ingredient);
@@ -30,6 +29,5 @@ module.exports = function getModels(sequelize) {
     Tag,
     RecipeTags,
     Ingredient,
-    RequestCache,
   };
 };
