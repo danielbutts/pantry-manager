@@ -24,25 +24,25 @@ const deleteSession = (req, res) => {
 };
 
 const getSession = (req, res) => {
-  const userId = req.session.userId;
+  const userFirstName = req.session.firstName;
 
   let error;
-  res.render('pages/login', { error, userId });
+  res.render('pages/login', { error, userFirstName });
 };
 
 const setSession = (req, res, next) => {
   const { email, password } = req.body;
   const error = { status: 400 };
-  const userId = req.session.userId;
+  const userFirstName = req.session.firstName;
 
   if (!email || !email.trim()) {
     error.message = 'Email must not be blank';
-    res.render('pages/login', { error, userId });
+    res.render('pages/login', { error, userFirstName });
   }
 
   if (!password) {
     error.message = 'Password must not be blank';
-    res.render('pages/login', { error, userId });
+    res.render('pages/login', { error, userFirstName });
   }
 
   let user;
@@ -51,20 +51,20 @@ const setSession = (req, res, next) => {
     .then((userEmail) => {
       if (!userEmail) {
         error.message = 'Bad email or password';
-        res.render('pages/login', { error, userId });
+        res.render('pages/login', { error, userFirstName });
       }
       user = userEmail.dataValues;
       return bcrypt.compare(password, user.password);
     })
     .then(() => {
       delete user.password;
-
       req.session.userId = user.id;
+      req.session.firstName = user.firstName;
       res.redirect(`/users/${user.id}`);
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
       error.message = 'Bad email or password';
-      res.render('pages/login', { error, userId });
+      res.render('pages/login', { error, userFirstName });
     })
     .catch((err) => {
       next(err);

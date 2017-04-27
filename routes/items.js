@@ -45,14 +45,14 @@ router.get('/pantry/:id', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const title = 'Edit Item';
   const id = req.params.id;
-  const userId = req.session.userId;
+  const userFirstName = req.session.firstName;
 
   models.Item.findOne({ where: { id } })
   .then((result) => {
     const item = result.dataValues;
     item.createdAt = displayDate(item.createdAt);
     item.expireDate = displayDate(item.expireDate);
-    res.render('pages/edit-item', { item, title, userId });
+    res.render('pages/edit-item', { item, title, userFirstName });
   })
   .catch((err) => {
     next(err);
