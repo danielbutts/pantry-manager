@@ -23,9 +23,9 @@
       		</div>
       		<div class="collapse navbar-collapse" id="navbar">
       			<ul class="nav navbar-nav navbar-right">
-              <%if (userFirstName) {%>
-      				<li class="active"><a href="#"><%= userFirstName%><span class="sr-only">(current)</span></a></li>
-              <li class="active"><a href="/users/1/pantries/1">Pantry<span class="sr-only">(current)</span></a></li>
+              <%if (currentUser.userId) {%>
+      				<li class="active"><a href="#"><%= currentUser.firstName%><span class="sr-only">(current)</span></a></li>
+              <li class="active"><a href=<%= `/users/${currentUser.userId}/pantries/${currentUser.userId}`%>>Pantry<span class="sr-only">(current)</span></a></li>
       				<li class="active"><a href="/session/logout">Log Out<span class="sr-only">(current)</span></a></li>
               <%} else {%>
               <li class="active"><a href="/session">Log In<span class="sr-only">(current)</span></a></li>

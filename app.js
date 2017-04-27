@@ -57,13 +57,16 @@ app.use((req, res, next) => {
 // error handler
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   // set locals, only providing error in development
-  const userFirstName = req.session.firstName;
+  const currentUser = {
+  firstName: req.session.firstName,
+  userId: req.session.userId,
+};
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('pages/error', { error: res.locals.error, message: res.locals.message, userFirstName });
+  res.render('pages/error', { error: res.locals.error, message: res.locals.message, currentUser });
 });
 
 module.exports = app;

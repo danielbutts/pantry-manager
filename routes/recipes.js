@@ -14,7 +14,10 @@ router.get('/', (req, res, next) => {
   const apiId = process.env.API_ID;
   const apiKey = process.env.API_KEY;
   const max = 20;
-  const userFirstName = req.session.firstName;
+  const currentUser = {
+  firstName: req.session.firstName,
+  userId: req.session.userId,
+};
   const term = req.query.ingredients;
   const recipes = [];
 
@@ -107,7 +110,7 @@ router.get('/', (req, res, next) => {
         flavors,
       });
     });
-    res.render('../views/pages/recipes', { recipes, userFirstName });
+    res.render('../views/pages/recipes', { recipes, currentUser });
   })
   .catch((err) => {
     next(err);
