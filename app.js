@@ -17,7 +17,7 @@ const recipes = require('./routes/recipes');
 const items = require('./routes/items');
 
 // const tags = require('./routes/tags');
-const pantries = require('./routes/pantries');
+
 
 const app = express();
 
@@ -44,7 +44,7 @@ app.use('/users', users);
 app.use('/recipes', recipes);
 app.use('/items', items);
 // app.use('/tags', tags);
-app.use('/pantries', pantries);
+
 
 
 // catch 404 and forward to error handler

@@ -3,6 +3,7 @@ const sequelize = require('../db/connection');
 const models = require('../models')(sequelize);
 const bcrypt = require('bcrypt-as-promised');
 const checkSession = require('./session').checkSession;
+const pantries = require('./pantries');
 
 const router = express.Router();
 
@@ -70,5 +71,6 @@ const getUserDashboard = (req, res, next) => {
 router.post('/', addNewUser);
 router.use(checkSession);
 router.get('/:id', getUserDashboard);
+router.use('/:id/pantries', pantries);
 
 module.exports = router;
