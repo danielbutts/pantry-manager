@@ -63,8 +63,10 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { pantryId, addDate, expireDate, quantity, units, percentUsed } = req.body;
+  const { name, pantryId, addDate, expireDate, quantity, units, percentUsed } = req.body;
+  console.log(req.body);
   return models.Item.create({
+    name,
     pantryId,
     addDate,
     expireDate,

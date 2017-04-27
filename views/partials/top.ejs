@@ -4,9 +4,9 @@
     <title>Pantry Weasel</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script defer type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
     </script>
-    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   </head>
   <body>
     <header>
@@ -25,7 +25,8 @@
       			<ul class="nav navbar-nav navbar-right">
               <%if (currentUser.userId) {%>
       				<li class="active"><a href="#"><%= currentUser.firstName%><span class="sr-only">(current)</span></a></li>
-              <li class="active"><a href=<%= `/users/${currentUser.userId}/pantries/${currentUser.userId}`%>>Pantry<span class="sr-only">(current)</span></a></li>
+              <li class="active">
+                <a href= "/users/<%=currentUser.userId%>/pantries/<%=currentUser.userId%>">Pantry<span class="sr-only">(current)</span></a></li>
       				<li class="active"><a href="/session/logout">Log Out<span class="sr-only">(current)</span></a></li>
               <%} else {%>
               <li class="active"><a href="/session">Log In<span class="sr-only">(current)</span></a></li>

@@ -1,15 +1,38 @@
 <% include ../partials/top %>
-<main>
-  <div class="container">
-    <div class="jumbotron">
-      <h3 class='text-left'>Hi <%= currentUser.firstName %>! This is your pantry:</h3>
+  <script defer type="text/javascript" src="/scripts/pantry.js"></script>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="jumbotron">
+            <h3 class='text-left'>Hi <%= currentUser.firstName %>! This is your pantry:</h3>
+          </div>
+          <div class="table-striped">
+            <% currentUser.pantryItems.forEach((item) => { %>
+              <ul>
+                <strong><%= item.name %></strong>
+                <li>Qty:
+                  <%= item.quantity%>
+                    <%= item.units%>
+                </li>
+                <a href="#">Delete</a>
+              </ul>
+              <% }); %>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <!-- { pantryId, addDate, expireDate, quantity, units, percentUsed } -->
+          <h2>Add new items here</h2>
+          <form class="" action="/items" method="post">
+            <div class="form-group">
+              <label for="item-name">Item name</label>
+              <input type="text" class="form-control" id="item-name" placeholder="Item name">
+            </div>
+            <input hidden class="pantry-id" type="text" name="" value="<%=currentUser.userId%>">
+            <button id="add-pantry-item" type="button" class="btn btn-info">Add Item</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <% currentUser.pantryItems.forEach((item) => { %>
-      <ul>
-        <strong><%= item.name %></strong>
-        <li>Qty: <%= item.quantity%> <%= item.units%></li>
-      </ul>
-    <% }); %>
-  </div>
-</main>
-<% include ../partials/footer %>
+  </main>
+  <% include ../partials/footer %>
