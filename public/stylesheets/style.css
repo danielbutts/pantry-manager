@@ -7,19 +7,6 @@ a {
   color: #00B7FF;
 }
 
-.bg {
-  background-color: #f2cd7b ;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 1000px;
-  width: 100%;
-}
-
 nav.navbar-findcond {
   background: #3d2023;
   border-color: #ccc;
