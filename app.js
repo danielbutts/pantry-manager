@@ -13,12 +13,11 @@ const bodyParser = require('body-parser');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const session = require('./routes/session').router;
-const checkSession = require('./routes/session').checkSession;
 const recipes = require('./routes/recipes');
 const items = require('./routes/items');
 
 // const tags = require('./routes/tags');
-// const pantries = require('./routes/pantries');
+const pantries = require('./routes/pantries');
 
 const app = express();
 
@@ -42,11 +41,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/session', session);
 app.use('/users', users);
-// app.use(checkSession);
 app.use('/recipes', recipes);
 app.use('/items', items);
 // app.use('/tags', tags);
-// app.use('/pantries', pantries);
+app.use('/pantries', pantries);
 
 
 // catch 404 and forward to error handler
