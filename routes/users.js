@@ -40,6 +40,7 @@ const addNewUser = (req, res, next) => {
         .then((user) => {
           const newUser = user;
           delete newUser.dataValues.password;
+          req.session.userId = newUser.id;
           res.redirect(`/users/${newUser.id}`);
         });
       } else {
