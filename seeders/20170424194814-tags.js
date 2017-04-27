@@ -4,17 +4,17 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return [
       queryInterface.bulkInsert('tags', [
-        { name: 'Spicy', isDefault: true, type: 'spiciness' },
-        { name: 'Mild', isDefault: true, type: 'spiciness' },
-        { name: 'Medium', isDefault: true, type: 'spiciness' },
-        { name: 'Easy', isDefault: true, type: 'difficulty' },
-        { name: 'Difficult', isDefault: true, type: 'difficulty' },
-        { name: 'Appetizer', isDefault: true, type: 'course' },
-        { name: 'Entre', isDefault: true, type: 'course' },
-        { name: 'Desert', isDefault: true, type: 'course' },
-        { name: 'Breakfast', isDefault: true, type: 'meal' },
-        { name: 'Lunch', isDefault: true, type: 'meal' },
-        { name: 'Dinner', isDefault: true, type: 'meal' },
+        { name: 'Spicy', isDefault: true, tagType: 'spiciness' },
+        { name: 'Mild', isDefault: true, tagType: 'spiciness' },
+        { name: 'Medium', isDefault: true, tagType: 'spiciness' },
+        { name: 'Easy', isDefault: true, tagType: 'difficulty' },
+        { name: 'Difficult', isDefault: true, tagType: 'difficulty' },
+        { name: 'Appetizer', isDefault: true, tagType: 'course' },
+        { name: 'Entre', isDefault: true, tagType: 'course' },
+        { name: 'Desert', isDefault: true, tagType: 'course' },
+        { name: 'Breakfast', isDefault: true, tagType: 'meal' },
+        { name: 'Lunch', isDefault: true, tagType: 'meal' },
+        { name: 'Dinner', isDefault: true, tagType: 'meal' },
       ])
     ];
   },

@@ -8,7 +8,7 @@ module.exports = {
       name: { type: Sequelize.STRING(50), allowNull: false },
       createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
       updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
-      recipeId: { type: Sequelize.INTEGER, references: { model: 'items', key: 'id' }, onDelete: 'cascade' },
+      recipeId: { type: Sequelize.INTEGER, references: { model: 'recipes', key: 'id' }, onDelete: 'cascade' },
     });
   },
 

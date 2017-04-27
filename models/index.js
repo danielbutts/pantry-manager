@@ -9,12 +9,13 @@ const Pantry = require('./Pantry');
 const Tag = require('./Tag');
 const Item = require('./Item');
 const RequestCache = require('./RequestCache');
+const RecipeTags = require('./RecipeTags');
 
 Recipe.hasMany(Ingredient);
-Recipe.belongsToMany(Tag, {through: 'recipesTags'});
-Tag.belongsToMany(Recipe, {through: 'recipesTags'});
-Tag.belongsToMany(Item, {through: 'itemsTags'});
-Item.belongsToMany(Tag, {through: 'itemsTags'});
+Recipe.belongsToMany(Tag, {through: RecipeTags});
+Tag.belongsToMany(Recipe, {through: RecipeTags});
+// Tag.belongsToMany(Item, {through: 'itemsTags'});
+// Item.belongsToMany(Tag, {through: 'itemsTags'});
 Pantry.hasMany(User);
 Pantry.hasMany(Item);
 
@@ -27,6 +28,7 @@ module.exports = function getModels(sequelize) {
     Pantry,
     Recipe,
     Tag,
+    RecipeTags,
     Ingredient,
     RequestCache,
   };

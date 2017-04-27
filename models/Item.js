@@ -8,8 +8,8 @@ const Item = sequelize.define('items', {
   updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
   addDate: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
   expireDate: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
-  percentUsed: { type: Sequelize.DataTypes.FLOAT, allowNull: false, default: 0},
-  quantity: { type: Sequelize.DataTypes.INTEGER, allowNull: false, default: 1},
+  percentUsed: { type: Sequelize.DataTypes.FLOAT, allowNull: false, defaultValue: 0},
+  quantity: { type: Sequelize.DataTypes.INTEGER, allowNull: false, defaultValue: 1},
   units: { type: Sequelize.DataTypes.STRING(50), allowNull: true },
 }, {
   freezeTableName: true,

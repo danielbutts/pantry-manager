@@ -2,12 +2,13 @@ const path = require('path');
 const sequelize = require('../db/connection');
 const Sequelize = sequelize.Sequelize;
 
-const RequestCache = sequelize.define('requestCache', {
+const RecipeTags = sequelize.define('recipeTags', {
   createdAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
   updatedAt: { type: 'TIMESTAMP', allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
-  searchTerm: { type: Sequelize.DataTypes.STRING(50), allowNull: false},
+  recipeId: { type: Sequelize.INTEGER, references: { model: 'recipes', key: 'id' }, onDelete: 'cascade' },
+  tagId: { type: Sequelize.INTEGER, references: { model: 'tags', key: 'id' }, onDelete: 'cascade' }
 }, {
-  freezeTableName: true,
+    freezeTableName: true,
 });
 
-module.exports = RequestCache;
+module.exports = RecipeTags;
