@@ -1,3 +1,14 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<% include ../partials/top %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="jumbotron text-center">
+        <h1 class="text-danger "><%= error.status %></h1>
+        <h2 class="text-center text-danger"><%= message %></h2>
+        <hr>
+        <p>Please <a href="/session">log in</a> or <a href="/new-user">register</a> as a new user.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<% include ../partials/footer %>

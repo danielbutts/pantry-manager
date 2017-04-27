@@ -4,20 +4,17 @@ main {
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(73, 139, 227);
 }
 
-.bg {
-  background-color: #f2cd7b ;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 1000px;
-  width: 100%;
+input.form-control.btn {
+  background-color: rgb(73, 139, 227);
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: rgb(73, 139, 227);
+  color: #fff;
 }
 
 nav.navbar-findcond {
@@ -27,11 +24,11 @@ nav.navbar-findcond {
 }
 
 nav.navbar-findcond a {
-  color: #d69d60;
+  color: #f2cd7b;
 }
 
 nav.navbar-findcond ul.navbar-nav a {
-  color: #d69d60;
+  color: #f2cd7b;
   border-style: solid;
   border-width: 0 0 2px 0;
   border-color: #3d2023;
@@ -42,7 +39,7 @@ nav.navbar-findcond ul.navbar-nav a:hover, nav.navbar-findcond ul.navbar-nav a:v
 }
 
 nav.navbar-findcond ul.navbar-nav a:hover {
-  border-color: #d69d60;
+  border-color: #f2cd7b;
 }
 
 nav.navbar-findcond li.divider {
@@ -50,7 +47,7 @@ nav.navbar-findcond li.divider {
 }
 
 nav.navbar-findcond button.navbar-toggle {
-  background: #d69d60;
+  background: #f2cd7b;
   border-radius: 2px;
 }
 
@@ -75,12 +72,12 @@ nav.navbar-findcond ul.dropdown-menu>li>a {
 }
 
 nav.navbar-findcond ul.dropdown-menu>li>a:hover {
-  background: #d69d60;
+  background: #f2cd7b;
   color: #3d2023;
 }
 
 nav.navbar-findcond span.badge {
-  background: #d69d60;
+  background: #f2cd7b;
   font-weight: normal;
   font-size: 11px;
   margin: 0 4px;
