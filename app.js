@@ -16,6 +16,7 @@ const session = require('./routes/session').router;
 
 // const checkSession = require('./routes/session').checkSession;
 app.enable('trust proxy'); // for heroku session
+
 const recipes = require('./routes/recipes');
 const items = require('./routes/items');
 
