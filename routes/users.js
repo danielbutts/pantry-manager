@@ -9,21 +9,21 @@ const router = express.Router();
 const addNewUser = (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   const error = { status: 400 };
-  const userId = req.session.userId;
+  const userFirstName = req.session.firstName;
 
 
   if (!email || !email.trim()) {
     error.message = 'Email must not be blank';
-    res.render('pages/new-user', { error, userId });
+    res.render('pages/new-user', { error, userFirstName });
   } else if (!firstName || !firstName.trim()) {
     error.message = 'First Name must not be blank';
-    res.render('pages/new-user', { error, userId });
+    res.render('pages/new-user', { error, userFirstName });
   } else if (!lastName || !lastName.trim()) {
     error.message = 'Last Name must not be blank';
-    res.render('pages/new-user', { error, userId });
+    res.render('pages/new-user', { error, userFirstName });
   } else if (!password || password.length < 8) {
     error.message = 'Password must be at least 8 chars long';
-    res.render('pages/new-user', { error, userId });
+    res.render('pages/new-user', { error, userFirstName });
   } else {
     models.User.findOne({ where: { email } })
     .then((result) => {
@@ -41,11 +41,12 @@ const addNewUser = (req, res, next) => {
           const newUser = user;
           delete newUser.dataValues.password;
           req.session.userId = newUser.id;
+          req.session.firstName = user.firstName;
           res.redirect(`/users/${newUser.id}`);
         });
       } else {
         error.message = 'Email already exists';
-        res.render('pages/new-user', { error, userId });
+        res.render('pages/new-user', { error, userFirstName });
       }
     }).catch((err) => {
       next(err);
@@ -53,21 +54,13 @@ const addNewUser = (req, res, next) => {
   }
 };
 
-const getUsers = (req, res, next) => {
-  models.User.findAll().then((users) => {
-    res.status(200).json(users);
-  })
-  .catch((err) => {
-    next(err);
-  });
-};
 
 const getUserDashboard = (req, res, next) => {
   const id = req.params.id;
-  const userId = req.session.userId;
+  const userFirstName = req.session.firstName;
   models.User.findOne({ where: { id } })
   .then(() => {
-    res.render('pages/dashboard', { title: 'Pantry Weasel', userId });
+    res.render('pages/dashboard', { title: 'Pantry Weasel', userFirstName });
   })
   .catch((err) => {
     next(err);
@@ -75,7 +68,6 @@ const getUserDashboard = (req, res, next) => {
 };
 
 router.post('/', addNewUser);
-router.get('/', getUsers);
 router.use(checkSession);
 router.get('/:id', getUserDashboard);
 
