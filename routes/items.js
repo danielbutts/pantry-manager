@@ -63,7 +63,9 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { name, pantryId, addDate, expireDate, quantity, units, percentUsed } = req.body;
+  let { name, pantryId, addDate, expireDate, quantity, units, percentUsed } = req.body;
+  pantryId = parseInt(pantryId);
+  console.log('pantryId', pantryId);
   return models.Item.create({
     name,
     pantryId,
@@ -76,6 +78,7 @@ router.post('/', (req, res, next) => {
     res.status(200).json(item);
   })
   .catch((err) => {
+    console.log(err);
     next(err);
   });
 });

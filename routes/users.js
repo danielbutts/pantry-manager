@@ -39,6 +39,10 @@ const addNewUser = (req, res, next) => {
             const pantryId = pantry.id;
             return models.User.create(
               { firstName, lastName, email, password: hashedPassword, pantryId });
+          })
+          .catch((err) => {
+            console.log(err);
+            next(err);
           }) // eslint-disable-line comma-dangle
         )
         .then((user) => {

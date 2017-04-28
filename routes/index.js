@@ -52,21 +52,6 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// function getRandomFromArray(arr, num) {
-//   const times = arr.length > num ? num : arr.length;
-//   const randArr = [];
-//   const usedNums = [];
-//   while (usedNums.length <= times) {
-//     const index = Math.round(Math.random() * arr.length);
-//     if (!usedNums.includes(index)) {
-//       usedNums.push(index);
-//       randArr.push(arr[index]);
-//     }
-//   }
-//   console.log(randArr);
-//   return randArr;
-// }
-
 router.get('/new-user', (req, res) => {
   const currentUser = {
     firstName: req.session.firstName,
