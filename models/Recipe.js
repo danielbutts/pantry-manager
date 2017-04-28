@@ -15,6 +15,8 @@ const Recipe = sequelize.define('recipes', {
   recipeText: { type: Sequelize.DataTypes.TEXT, allowNull: true },
   recipeId: { type: Sequelize.DataTypes.STRING(255), allowNull: false, unique: true },
   imageUrl: { type: Sequelize.DataTypes.TEXT, allowNull: false },
+  isFavorite: { type: Sequelize.DataTypes.BOOLEAN, allowNull: true, defaultValue: false },
+
 }, {
     freezeTableName: true,
 });

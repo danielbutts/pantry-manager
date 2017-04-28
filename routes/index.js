@@ -43,7 +43,7 @@ router.get('/', (req, res, next) => {
       });
       // console.log(recipes);
       const recent = Object.values(recipes);
-      // recent = getRandomFromArray(recent, 5);
+
       res.render('pages/index', { title: 'Pantry Weasel', error: '', currentUser, recent });
     });
   })

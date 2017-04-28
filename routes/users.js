@@ -60,14 +60,22 @@ const addNewUser = (req, res, next) => {
 
 
 const getUserDashboard = (req, res, next) => {
-  const id = req.params.id;
+  // const id = req.params.id;
   const currentUser = {
     firstName: req.session.firstName,
     userId: req.session.userId,
   };
-  models.User.findOne({ where: { id } })
-  .then(() => {
-    res.render('pages/dashboard', { title: 'Pantry Weasel', currentUser });
+  // models.User.findOne({ where: { id } })
+  // .then(() => {
+  models.Recipe.findAll({ where: { isFavorite: true } })
+  .then((results) => {
+    const favorites = [];
+    results.forEach((result) => {
+      const recipe = result.dataValues;
+      favorites.push(recipe);
+    });
+    console.log(favorites);
+    res.render('pages/dashboard', { title: 'Pantry Weasel', currentUser, favorites });
   })
   .catch((err) => {
     next(err);
