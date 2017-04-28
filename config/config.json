@@ -1,6 +1,8 @@
 {
   "development": {
-    "use_env_variable": "DATABASE_URL"
+    "database": "pantry_weasel_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
   },
   "production": {
     "use_env_variable": "DATABASE_URL"
