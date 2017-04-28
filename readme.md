@@ -7,7 +7,7 @@ Pantry Weasel is a recipe search application that allows you to make the most ou
 
 Upon visiting the homepage at `pantry-weasel.herokuapp.com` you will be presented with a simple search bar. All you need to do is enter whatever ingredients you wish to cook with, separated by either a comma or a space, and the Yummly® recipe API will provide you with a number of recipes that fit those requirements.
 
-Below the 
+Below the search bar you will see the most recent searches by other users to give you inspiration of what to look for. 
 
 ## Signing in:
 
