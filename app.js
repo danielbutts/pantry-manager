@@ -14,19 +14,15 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const session = require('./routes/session').router;
 
+const app = express();
+app.enable('trust proxy');
+
 const recipes = require('./routes/recipes');
 const items = require('./routes/items');
-
-
-// const tags = require('./routes/tags');
-
-
-const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.enable('trust proxy');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

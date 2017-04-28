@@ -164,9 +164,13 @@ h3.search-button {
   display: inline-block;
 }
 
-.pantry-item .label-primary {
+.pantry-item .label-default {
     font-weight: normal !important;
     background-color: #d69d60;
+}
+
+.pantry-item .queried {
+  background-color: rgb(73, 139, 227);
 }
 
 .pantry-item a {
