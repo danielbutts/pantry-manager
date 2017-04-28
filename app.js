@@ -14,8 +14,8 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const session = require('./routes/session').router;
 
-// const checkSession = require('./routes/session').checkSession;
-app.enable('trust proxy'); // for heroku session
+const app = express();
+app.enable('trust proxy') // for heroku session
 
 const recipes = require('./routes/recipes');
 const items = require('./routes/items');
@@ -24,7 +24,6 @@ const items = require('./routes/items');
 // const tags = require('./routes/tags');
 
 
-const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,8 +50,6 @@ app.use('/recipes', recipes);
 app.use('/items', items);
 // app.use('/tags', tags);
 
-
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
@@ -64,9 +61,9 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   // set locals, only providing error in development
   const currentUser = {
-  firstName: req.session.firstName,
-  userId: req.session.userId,
-};
+    firstName: req.session.firstName,
+    userId: req.session.userId,
+  };
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

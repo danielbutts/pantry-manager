@@ -7,7 +7,7 @@ if (process.env.DATABASE_URL) {
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     protocol: 'postgres',
-    logging: true, //false
+    logging: process.env.NODE_ENV !== 'production',
   });
 } else {
   sequelize = new Sequelize(process.env.DATABASE_URL);
