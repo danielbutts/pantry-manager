@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
     userId: req.session.userId,
   };
   models.Recipe.findAll({
-    limit: 5,
+    limit: 4,
     order: [['createdAt', 'DESC']],
   })
   .then((recipeResults) => {
@@ -43,7 +43,7 @@ router.get('/', (req, res, next) => {
       });
       // console.log(recipes);
       const recent = Object.values(recipes);
-      console.log(recent);
+      // recent = getRandomFromArray(recent, 5);
       res.render('pages/index', { title: 'Pantry Weasel', error: '', currentUser, recent });
     });
   })
@@ -51,6 +51,21 @@ router.get('/', (req, res, next) => {
     next(err);
   });
 });
+
+// function getRandomFromArray(arr, num) {
+//   const times = arr.length > num ? num : arr.length;
+//   const randArr = [];
+//   const usedNums = [];
+//   while (usedNums.length <= times) {
+//     const index = Math.round(Math.random() * arr.length);
+//     if (!usedNums.includes(index)) {
+//       usedNums.push(index);
+//       randArr.push(arr[index]);
+//     }
+//   }
+//   console.log(randArr);
+//   return randArr;
+// }
 
 router.get('/new-user', (req, res) => {
   const currentUser = {

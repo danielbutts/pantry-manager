@@ -88,11 +88,74 @@ nav.navbar-findcond span.badge.new {
   color: #3d2023;
 }
 
-img.double-solid {
-  border-style: double;
-  border: 1px solid darkgray;
+img.solid-black {
+  border: 1px solid black;
 }
 
 span.orange {
   color: darkorange;
+}
+
+div.boxtile {
+  height: 35rem;
+  background-color: #d69d60;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  padding-top: 5px;
+  margin-top: 10px;
+  margin-right:20px;
+}
+
+div.boxtile-body {
+  padding-top: 5px;
+  height: 26.5rem;
+  background-color: #f2cb7d;
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 109%;
+  margin-left: -10px;
+  margin-top: 10px;
+}
+
+.boxtile-body h4 {
+  color: #8c332c;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.boxtile-body p {
+  color: white;
+}
+
+a.navbar-brand img {
+  display: inline;
+  padding-right: 2px;
+}
+
+h1.index-title {
+  color: #3d2023;
+}
+
+h3.index-subtitle {
+  color: #a35420;
+}
+
+div.search-div {
+  width: 90%;
+  background-color: lightgray;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid darkgray;
+  margin:auto;
+}
+
+input.search-bar {
+  width: 50rem;
+  font-size: 22px;
+}
+
+h3.search-button {
+  display: inline-block;
 }

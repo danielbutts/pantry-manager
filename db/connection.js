@@ -10,7 +10,11 @@ if (process.env.DATABASE_URL) {
     logging: process.env.NODE_ENV !== 'production',
   });
 } else {
-  sequelize = new Sequelize(process.env.DATABASE_URL);
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    logging: false,
+  });
 }
 
 module.exports = sequelize;
