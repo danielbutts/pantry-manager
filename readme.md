@@ -7,14 +7,13 @@ Pantry Weasel is a recipe search application that allows you to make the most ou
 
 Upon visiting the homepage at `pantry-weasel.herokuapp.com` you will be presented with a simple search bar. All you need to do is enter whatever ingredients you wish to cook with, separated by either a comma or a space, and the Yummly® recipe API will provide you with a number of recipes that fit those requirements.
 
+Below the 
+
 ## Signing in:
 
-By registering and signing in with an email and password, you will have access to your **Pantry** by clicking on the link in the navbar. Once there, you can add and delete ingredients to keep track of what you have in stock.
+By registering and signing in with an email and password, you will have access to your **Pantry** by clicking on the link in the navbar. Once there, you can add and delete ingredients to keep track of what you have in stock. You can also generate search queries simply by clicking on ingredients within your pantry, so you don't have to type anything in or remember what you have in stock.
 
 ## Future features:
-
-- ##### Easier Search Queries
-  * Soon you will be able to generate search queries simply by selecting ingredients within your pantry so you don't have to type anything in or remember what you have in stock.
 
 - ##### Inventory Cross Referencing
   * You will have the option to filter the search results by cross referencing them with every other ingredient in your pantry to reduce the number of recipes that contain ingredients you don't currently have. This maximizes the amount of search results you receive that you can actually cook with the ingredients you have on-hand.
@@ -24,5 +23,3 @@ By registering and signing in with an email and password, you will have access t
 
 ## Tech Stack:
   This app is built with standard **HTML**, **CSS**, and **JavaScript** on the front end with some help from **Bootstrap** and **jQuery**. The backend is powered by **node.js** and **Express** which is hooked up to **PostgreSQL** via the **Sequelize** ORM, which proved to be the most challenging part of this project.
-
-  

@@ -41,10 +41,7 @@ router.get('/', (req, res, next) => {
         });
         recipes[recipeId].ingredients = ingredients;
       });
-      // console.log(recipes);
-      const recent = Object.values(recipes);
-      console.log(recent);
-      res.render('pages/index', { title: 'Pantry Weasel', error: '', currentUser, recent });
+      res.render('pages/index', { title: 'Pantry Weasel', error: '', currentUser });
     });
   })
   .catch((err) => {
