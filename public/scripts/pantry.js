@@ -2,6 +2,14 @@ const domVars = { query: [] };
 
 const deleteItem = () => {
   const $id = $(event.target).data('id');
+  const query = domVars.query;
+  const itemIndex = query.indexOf($(event.target).closest('.pantry-item .label').data('name'));
+
+  if (itemIndex) {
+    query.splice(itemIndex, 1);
+    console.log(query);
+  }
+
   $.ajax({
     method: 'DELETE',
     url: `/items/${$id}`,
@@ -47,5 +55,5 @@ $('#item-name').keypress((e) => {
   }
 });
 
-$('.pantry-item .remove').on('click', deleteItem);
-$('.pantry-item').on('click', addToQuery);
+$('.pantry-item a .remove').on('mouseup', deleteItem);
+$('.pantry-item .label').on('click', addToQuery);
