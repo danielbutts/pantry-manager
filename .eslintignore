@@ -3,3 +3,4 @@ models/*
 seeders/*
 migrations/*
 views/*.ejs
+public/scripts/

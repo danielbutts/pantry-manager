@@ -1,3 +1,5 @@
+const domVars = { query: [] };
+
 const deleteItem = () => {
   const $id = $(event.target).data('id');
   $.ajax({
@@ -21,6 +23,22 @@ const addItem = (e) => {
   })
 }
 
+const addToQuery = () => {
+  const $item = $(event.target);
+  const query = domVars.query;
+
+  if (!$item.hasClass('queried')) {
+    $item.addClass('queried');
+    query.push($item.data('name'));
+    console.log(query);
+  } else {
+    const itemIndex = query.indexOf($item.data('name'))
+    $item.removeClass('queried');
+    query.splice(itemIndex, 1);
+    console.log(query);
+  }
+}
+
 $('#add-pantry-item').click(addItem);
 
 $('#item-name').keypress((e) => {
@@ -29,5 +47,5 @@ $('#item-name').keypress((e) => {
   }
 });
 
-
-$('.pantry-item .remove').on('click', deleteItem)
+$('.pantry-item .remove').on('click', deleteItem);
+$('.pantry-item').on('click', addToQuery);
