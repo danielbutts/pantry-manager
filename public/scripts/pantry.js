@@ -38,12 +38,12 @@ const addToQuery = () => {
   if (!$item.hasClass('queried')) {
     $item.addClass('queried');
     query.push($item.data('name'));
-    console.log(query);
+    $('#recipe-search').val(query.join(', '))
   } else {
     const itemIndex = query.indexOf($item.data('name'))
     $item.removeClass('queried');
     query.splice(itemIndex, 1);
-    console.log(query);
+    $('#recipe-search').val(query.join(', '))
   }
 }
 
