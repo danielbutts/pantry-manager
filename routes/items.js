@@ -105,7 +105,7 @@ router.put('/:id', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
-  return models.Item.delete({
+  return models.Item.destroy({
     where: { id },
     cascade: true,
   }).then((result) => {

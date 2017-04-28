@@ -9,21 +9,18 @@
             <br>
             <h4 class="text-left">This is your pantry:</h4>
           </div>
-          <div class="table-striped">
-            <% currentUser.pantryItems.forEach((item) => { %>
-              <ul>
-                <strong><%= item.name %></strong>
-                <li>Qty:
-                  <%= item.quantity%>
-                    <%= item.units%>
-                </li>
-                <a href="#">Delete</a>
-              </ul>
-              <% }); %>
-          </div>
+          <% currentUser.pantryItems.forEach((item) => { %>
+          <h3 class="pantry-item">
+            <span class="label label-primary">
+              <%=item.name%>&nbsp;
+              <%=item.id%>
+              <a><i class="remove glyphicon glyphicon-remove-circle glyphicon-white" data-id="<%=item.id%>"></i></a>
+            </span>
+          </h3>
+          &nbsp;
+          <% }); %>
         </div>
         <div class="col-lg-4">
-          <!-- { pantryId, addDate, expireDate, quantity, units, percentUsed } -->
           <h2 class="text-center">Add new items here</h2>
           <hr>
           <form class="" action="/items" method="post">

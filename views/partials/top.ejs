@@ -19,7 +19,11 @@
       				<span class="icon-bar"></span>
       				<span class="icon-bar"></span>
       			</button>
-      			<a class="navbar-brand" href="/">Pantry Weasel</a>
+            <%if (currentUser.userId) {%>
+      			<a class="navbar-brand" href="/users/<%=currentUser.userId%>">Pantry Weasel</a>
+            <%} else {%>
+            <a class="navbar-brand" href="/">Pantry Weasel</a>
+            <%}%>
       		</div>
       		<div class="collapse navbar-collapse" id="navbar">
       			<ul class="nav navbar-nav navbar-right">
