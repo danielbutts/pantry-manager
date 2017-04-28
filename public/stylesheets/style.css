@@ -97,7 +97,7 @@ span.orange {
 }
 
 div.boxtile {
-  height: 35rem;
+  height: 40rem;
   background-color: #d69d60;
   border: 1px solid black;
   border-radius: 5px;
@@ -109,7 +109,7 @@ div.boxtile {
 
 div.boxtile-body {
   padding-top: 5px;
-  height: 26.5rem;
+  height: 31.5rem;
   background-color: #f2cb7d;
   border: 3px solid white;
   border-radius: 10px;
