@@ -21,10 +21,6 @@ router.get('/', (req, res, next) => {
   const term = req.query.ingredients;
   const recipes = [];
 
-  console.log(baseUrl);
-  console.log(apiId);
-  console.log(apiKey);
-
   rp({
     uri: `${baseUrl}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&maxResult=${max}`,
     json: true,
@@ -62,9 +58,7 @@ router.get('/', (req, res, next) => {
 
             // add course to tags
             if (attributes !== null) {
-              console.log(attributes);
               Object.keys(attributes).forEach((attribute) => {
-                console.log(attribute, attributes[attribute][0]);
                 models.Tag.findOne({ where: {
                   name: attributes[attribute][0],
                   tagType: attribute } })

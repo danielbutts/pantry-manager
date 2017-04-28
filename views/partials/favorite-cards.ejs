@@ -12,7 +12,12 @@
               <% } %></div>
             <h5>Cooking Time: <%= Math.floor(recipe.prepTime/60) %> min</h5>
             <br>
-            <p>INGREDIENTS</p>
+            <% if (recipe.ingredients) { %>
+              <p><% recipe.ingredients.forEach((ingredient, i) => { %>
+                <%= ingredient %><% if (i < recipe.ingredients.length - 1) { %>, <% } %>
+              <% }) %>
+              </p>
+            <% } %>
           </div>
 
         </div>

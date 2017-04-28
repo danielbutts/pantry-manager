@@ -64,22 +64,38 @@ const addNewUser = (req, res, next) => {
 
 
 const getUserDashboard = (req, res, next) => {
-  // const id = req.params.id;
   const currentUser = {
     firstName: req.session.firstName,
     userId: req.session.userId,
   };
-  // models.User.findOne({ where: { id } })
-  // .then(() => {
   models.Recipe.findAll({ where: { isFavorite: true } })
   .then((results) => {
+    const recipes = {};
     const favorites = [];
-    results.forEach((result) => {
-      const recipe = result.dataValues;
+    const ingredientQueries = [];
+
+    results.forEach((recipeResult) => {
+      const recipe = recipeResult.dataValues;
       favorites.push(recipe);
+      recipes[recipe.id] = recipe;
+      ingredientQueries.push(recipeResult.getIngredients());
     });
-    console.log(favorites);
-    res.render('pages/dashboard', { title: 'Pantry Weasel', currentUser, favorites });
+
+    Promise.all(ingredientQueries)
+    .then((ingredientsFromResults) => {
+      ingredientsFromResults.forEach((ingredientsResults) => {
+        // console.log(ingredientsResults);
+        const ingredients = [];
+        const recipeId = ingredientsResults[0].dataValues.recipeId;
+        ingredientsResults.forEach((ingredientResult) => {
+          ingredients.push(ingredientResult.dataValues.name);
+        });
+        recipes[recipeId].ingredients = ingredients;
+      });
+      const recent = Object.values(recipes);
+
+      res.render('pages/dashboard', { title: 'Pantry Weasel', error: '', currentUser, favorites });
+    });
   })
   .catch((err) => {
     next(err);
