@@ -20,12 +20,14 @@ const getPantryItems = (req, res, next) => {
       pantryItems.push(instance.dataValues);
     });
     currentUser.pantryItems = pantryItems;
+    console.log(pantryItems);
     res.render('pages/pantry', { error, currentUser });
   })
   .catch((err) => {
     next(err);
   });
-}
+};
+
 
 router.get('/:id', getPantryItems);
 

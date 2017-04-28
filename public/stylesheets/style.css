@@ -159,3 +159,36 @@ input.search-bar {
 h3.search-button {
   display: inline-block;
 }
+
+.pantry-item {
+  display: inline-block;
+}
+
+.pantry-item .label-primary {
+    font-weight: normal !important;
+    background-color: #d69d60;
+}
+
+.pantry-item a {
+  color: #bbb;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.pantry-item a:hover {
+  opacity: 1.0
+}
+
+.pantry-item a .remove {
+  vertical-align: bottom;
+  top: 0;
+}
+
+.pantry-item a {
+  margin: 0 0 0 .3em;
+}
+
+a .glyphicon-white {
+  color: #743d43;
+  margin-bottom: 2px;
+}

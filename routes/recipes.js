@@ -21,6 +21,10 @@ router.get('/', (req, res, next) => {
   const term = req.query.ingredients;
   const recipes = [];
 
+  console.log(baseUrl);
+  console.log(apiId);
+  console.log(apiKey);
+
   rp({
     uri: `${baseUrl}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&maxResult=${max}`,
     json: true,
@@ -112,6 +116,7 @@ router.get('/', (req, res, next) => {
     res.render('../views/pages/recipes', { recipes, currentUser });
   })
   .catch((err) => {
+    console.log(err);
     next(err);
   });
 });

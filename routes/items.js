@@ -46,9 +46,9 @@ router.get('/:id', (req, res, next) => {
   const title = 'Edit Item';
   const id = req.params.id;
   const currentUser = {
-  firstName: req.session.firstName,
-  userId: req.session.userId,
-};
+    firstName: req.session.firstName,
+    userId: req.session.userId,
+  };
 
   models.Item.findOne({ where: { id } })
   .then((result) => {
@@ -63,8 +63,9 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { pantryId, addDate, expireDate, quantity, units, percentUsed } = req.body;
+  const { name, pantryId, addDate, expireDate, quantity, units, percentUsed } = req.body;
   return models.Item.create({
+    name,
     pantryId,
     addDate,
     expireDate,
@@ -103,7 +104,7 @@ router.put('/:id', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
-  return models.Item.delete({
+  return models.Item.destroy({
     where: { id },
     cascade: true,
   }).then((result) => {
