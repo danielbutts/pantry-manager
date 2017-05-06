@@ -1,13 +1,39 @@
 # Pantry Weasel
-*Making the best of your pantry*
+#### By Daniel Butts and Sean McDermott
+* * *
 
+### *Making the best of your pantry*
 Pantry Weasel is a recipe search application that allows you to make the most out of the ingredients you already have to create new and exciting meals.
+
+## How to install:
+
+* Fork and clone the git repo into the directory of your choice.
+* Run `npm install` to install all of the dependencies.
+* You'll need to create a new `.env` file in the root directory of the project. Paste this code into that file:
+
+```
+DB_TYPE="postgres"
+DB_HOST="localhost"
+DB_PORT="5432"
+DB_NAME="pantry_weasel_dev"
+API_URL=http://api.yummly.com/v1/api/recipes?
+DATABASE_URL=postgres://localhost:5432/pantry_weasel_dev
+
+SESSION_SECRET= // any random assortment of characters will do, at least 16 characters. KEEP SECRET!
+
+// In order to use this app you will need to obtain a Yummly API key and ID.
+
+API_KEY=
+
+API_ID=
+```
+* Start your dev server with `npm run dev` and open up the app by visiting `https://localhost:5432/`, replacing `5432` with whichever port you wish to set up your local server on.
 
 ## How to use:
 
 Upon visiting the homepage at `pantry-weasel.herokuapp.com` you will be presented with a simple search bar. All you need to do is enter whatever ingredients you wish to cook with, separated by either a comma or a space, and the Yummly® recipe API will provide you with a number of recipes that fit those requirements.
 
-Below the search bar you will see the most recent searches by other users to give you inspiration of what to look for. 
+Below the search bar you will see the most recent searches by other users to give you inspiration of what to look for.
 
 ## Signing in:
 
