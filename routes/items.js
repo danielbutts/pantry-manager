@@ -51,6 +51,7 @@ router.get('/:id', (req, res, next) => {
   };
 
   models.Item.findOne({ where: { id } })
+
   .then((result) => {
     const item = result.dataValues;
     item.createdAt = displayDate(item.createdAt);
