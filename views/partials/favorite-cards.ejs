@@ -1,0 +1,27 @@
+<% if (locals.favorites) { %>
+<h3>Favorite Recipes</h3>
+<div class="row">
+  <% favorites.forEach((recipe) => { %>
+      <div class="col-xs-3 text-center">
+        <div class="col-xs-12 text-center boxtile">
+          <img class="img-rounded solid-black" src="<%= recipe.imageUrl %>">
+          <div class="boxtile-body">
+            <h4><%= recipe.title %></h4>
+            <div><% for (let i=0; i < recipe.siteRating; i++) { %>
+              <span class="glyphicon glyphicon-star orange" aria-hidden="true"></span>
+              <% } %></div>
+            <h5>Cooking Time: <%= Math.floor(recipe.prepTime/60) %> min</h5>
+            <br>
+            <% if (recipe.ingredients) { %>
+              <p><% recipe.ingredients.forEach((ingredient, i) => { %>
+                <%= ingredient %><% if (i < recipe.ingredients.length - 1) { %>, <% } %>
+              <% }) %>
+              </p>
+            <% } %>
+          </div>
+
+        </div>
+      </div>
+  <% }) %>
+</div>
+<% } %>

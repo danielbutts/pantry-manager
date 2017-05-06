@@ -2,19 +2,13 @@
 <main>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-3">
-        <h1>THIS IS THE DASHBOARD</h1>
+      <div class="col-xs-12 text-center">
+        <h2><%= currentUser.firstName%>'s Dashboard</h2>
       </div>
     </div>
     <hr>
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-4">
-        <form class="search" action="/recipes" method="get">
-          <button type="submit" class="btn btn-primary">Search</button>
-          <input type="text" name="ingredients" value="">
-        </form>
-      </div>
-    </div>
-  </div>
+    <% include ../partials/search %>
+    <% include ../partials/favorite-cards %>
+    <% include ../partials/cards %>
 </main>
 <% include ../partials/footer %>

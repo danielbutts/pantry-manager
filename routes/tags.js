@@ -23,9 +23,9 @@ function displayDate(date) {
 
 router.get('/item/:id', (req, res, next) => {
   const currentUser = {
-  firstName: req.session.firstName,
-  userId: req.session.userId,
-};
+    firstName: req.session.firstName,
+    userId: req.session.userId,
+  };
   const title = 'Item Tags';
   // const id = req.params.id;
   models.Tag.findAll({
@@ -55,9 +55,9 @@ router.get('/:id', (req, res, next) => {
   const title = 'Edit Item';
   const id = req.params.id;
   const currentUser = {
-  firstName: req.session.firstName,
-  userId: req.session.userId,
-};
+    firstName: req.session.firstName,
+    userId: req.session.userId,
+  };
 
   models.Item.findOne({ where: { id } })
   .then((result) => {

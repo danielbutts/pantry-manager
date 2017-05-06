@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
     userId: req.session.userId,
   };
   models.Recipe.findAll({
-    limit: 5,
+    limit: 4,
     order: [['createdAt', 'DESC']],
   })
   .then((recipeResults) => {

@@ -77,6 +77,7 @@ router.post('/', (req, res, next) => {
     res.status(200).json(item);
   })
   .catch((err) => {
+    console.log(err);
     next(err);
   });
 });

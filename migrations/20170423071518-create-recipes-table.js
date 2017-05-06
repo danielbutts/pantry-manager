@@ -14,7 +14,7 @@ module.exports = {
       description: { type: Sequelize.TEXT, allowNull: true },
       // comment: { type: Sequelize.TEXT, allowNull: true },
       // userRating: { type: Sequelize.INTEGER, allowNull: true },
-      // isFavorite: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
+      isFavorite: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
       imageUrl: { type: Sequelize.TEXT, allowNull: false, },
       prepTime: { type: Sequelize.INTEGER, allowNull: true },
       recipeText: { type: Sequelize.TEXT, allowNull: true },

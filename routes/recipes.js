@@ -58,9 +58,7 @@ router.get('/', (req, res, next) => {
 
             // add course to tags
             if (attributes !== null) {
-              console.log(attributes);
               Object.keys(attributes).forEach((attribute) => {
-                console.log(attribute, attributes[attribute][0]);
                 models.Tag.findOne({ where: {
                   name: attributes[attribute][0],
                   tagType: attribute } })
@@ -112,6 +110,7 @@ router.get('/', (req, res, next) => {
     res.render('../views/pages/recipes', { recipes, currentUser });
   })
   .catch((err) => {
+    console.log(err);
     next(err);
   });
 });

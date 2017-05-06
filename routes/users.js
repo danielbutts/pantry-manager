@@ -39,6 +39,10 @@ const addNewUser = (req, res, next) => {
             const pantryId = pantry.id;
             return models.User.create(
               { firstName, lastName, email, password: hashedPassword, pantryId });
+          })
+          .catch((err) => {
+            console.log(err);
+            next(err);
           }) // eslint-disable-line comma-dangle
         )
         .then((user) => {
@@ -60,14 +64,38 @@ const addNewUser = (req, res, next) => {
 
 
 const getUserDashboard = (req, res, next) => {
-  const id = req.params.id;
   const currentUser = {
     firstName: req.session.firstName,
     userId: req.session.userId,
   };
-  models.User.findOne({ where: { id } })
-  .then(() => {
-    res.render('pages/dashboard', { title: 'Pantry Weasel', currentUser });
+  models.Recipe.findAll({ where: { isFavorite: true } })
+  .then((results) => {
+    const recipes = {};
+    const favorites = [];
+    const ingredientQueries = [];
+
+    results.forEach((recipeResult) => {
+      const recipe = recipeResult.dataValues;
+      favorites.push(recipe);
+      recipes[recipe.id] = recipe;
+      ingredientQueries.push(recipeResult.getIngredients());
+    });
+
+    Promise.all(ingredientQueries)
+    .then((ingredientsFromResults) => {
+      ingredientsFromResults.forEach((ingredientsResults) => {
+        // console.log(ingredientsResults);
+        const ingredients = [];
+        const recipeId = ingredientsResults[0].dataValues.recipeId;
+        ingredientsResults.forEach((ingredientResult) => {
+          ingredients.push(ingredientResult.dataValues.name);
+        });
+        recipes[recipeId].ingredients = ingredients;
+      });
+      const recent = Object.values(recipes);
+
+      res.render('pages/dashboard', { title: 'Pantry Weasel', error: '', currentUser, favorites });
+    });
   })
   .catch((err) => {
     next(err);
