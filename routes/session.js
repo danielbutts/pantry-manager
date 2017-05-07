@@ -25,9 +25,9 @@ const deleteSession = (req, res) => {
 
 const getSession = (req, res) => {
   const currentUser = {
-  firstName: req.session.firstName,
-  userId: req.session.userId,
-};
+    firstName: req.session.firstName,
+    userId: req.session.userId,
+  };
 
   let error;
   res.render('pages/login', { error, currentUser });
@@ -37,9 +37,9 @@ const setSession = (req, res, next) => {
   const { email, password } = req.body;
   const error = { status: 400 };
   const currentUser = {
-  firstName: req.session.firstName,
-  userId: req.session.userId,
-};
+    firstName: req.session.firstName,
+    userId: req.session.userId,
+  };
 
   if (!email || !email.trim()) {
     error.message = 'Email must not be blank';
