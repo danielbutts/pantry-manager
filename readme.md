@@ -28,25 +28,40 @@ API_KEY=
 API_ID=
 ```
 * Create your PostgreSQL database then migrate and seed the schema.
+
 ```
 $ createdb pantry_weasel_dev
 $ node_modules/.bin/sequelize db:migrate
 $ node_modules/.bin/sequelize db:seed:all
 ```
-  ###### Current Bug:
-    You will need to manually insert data for the pantries table. From inside your PostgreSQL console run `INSERT INTO pantries (id) VALUES (1);` for as many users as you wish to have, replacing the 
+  - ###### Current Bug:
+      You will need to manually insert data for the pantries table. From inside your PostgreSQL console run `INSERT INTO pantries (id) VALUES (1);` for as many users as you wish to have, replacing the
+
 
 * Start your dev server with `npm run dev` and open up the app by visiting `https://localhost:5432/`, replacing `5432` with whichever port you wish to set up your local server on.
 
 ## How to use:
 
-Upon visiting the homepage at `pantry-weasel.herokuapp.com` you will be presented with a simple search bar. All you need to do is enter whatever ingredients you wish to cook with, separated by either a comma or a space, and the Yummly® recipe API will provide you with a number of recipes that fit those requirements.
+Upon visiting the homepage at `pantry-weasel.herokuapp.com` you will be presented with a simple search bar.
+
+![Landing Page](/screenshots/PW-landing-page.png)
+
+All you need to do is enter whatever ingredients you wish to cook with, separated by either a comma or a space, and the Yummly® recipe API will provide you with a number of recipes that fit those requirements.
 
 Below the search bar you will see the most recent searches by other users to give you inspiration of what to look for.
+
+
+
 
 ## Signing in:
 
 By registering and signing in with an email and password, you will have access to your **Pantry** by clicking on the link in the navbar. Once there, you can add and delete ingredients to keep track of what you have in stock. You can also generate search queries simply by clicking on ingredients within your pantry, so you don't have to type anything in or remember what you have in stock.
+
+![Landing Page](/screenshots/PW-pantry.png)
+
+Searches from either your pantry or the landing page will redirect to a results screen where you can look at the recipes returned from the Yummly API.
+
+![Landing Page](/screenshots/PW-results.png)
 
 ## Future features:
 
