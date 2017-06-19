@@ -1,9 +1,9 @@
-# Pantry Weasel
+# Pantry Manager
 #### By Daniel Butts and Sean McDermott
 * * *
 
 ### *Making the best of your pantry*
-Pantry Weasel is a recipe search application that allows you to make the most out of the ingredients you already have to create new and exciting meals.
+Pantry Manager is a recipe search application that allows you to make the most out of the ingredients you already have to create new and exciting meals.
 
 ## How to install:
 
@@ -15,11 +15,11 @@ Pantry Weasel is a recipe search application that allows you to make the most ou
 DB_TYPE="postgres"
 DB_HOST="localhost"
 DB_PORT="5432"
-DB_NAME="pantry_weasel_dev"
+DB_NAME="pantry_manager_dev"
 API_URL=http://api.yummly.com/v1/api/recipes?
-DATABASE_URL=postgres://localhost:5432/pantry_weasel_dev
+DATABASE_URL=postgres://localhost:5432/pantry_manager_dev
 
-SESSION_SECRET= // any random assortment of characters will do, at least 16 characters. KEEP SECRET!
+SESSION_SECRET= // any random assortment of characters will do, at least 16 characters. KEEP IT SECRET!
 
 // In order to use this app you will need to obtain a Yummly API key and ID.
 
@@ -30,7 +30,7 @@ API_ID=
 * Create your PostgreSQL database then migrate and seed the schema.
 
 ```
-$ createdb pantry_weasel_dev
+$ createdb pantry_manager_dev
 $ node_modules/.bin/sequelize db:migrate
 $ node_modules/.bin/sequelize db:seed:all
 ```
@@ -42,7 +42,7 @@ $ node_modules/.bin/sequelize db:seed:all
 
 ## How to use:
 
-Upon visiting the homepage at `pantry-weasel.herokuapp.com` you will be presented with a simple search bar.
+Upon visiting the homepage at `pantry-and-recipe-manager.herokuapp.com` you will be presented with a simple search bar.
 
 ![Landing Page](/screenshots/PW-landing-page.png)
 

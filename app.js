@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieSession({
-  name: 'pantry-weasel',
+  name: 'pantry-manager',
   secret: process.env.SESSION_SECRET,
   secure: app.get('env') === 'production',
 }));

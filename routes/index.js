@@ -43,7 +43,7 @@ router.get('/', (req, res, next) => {
       });
       const recent = Object.values(recipes);
 
-      res.render('pages/index', { title: 'Pantry Weasel', error: '', currentUser, recent });
+      res.render('pages/index', { title: 'Pantry Manager', error: '', currentUser, recent });
     });
   })
   .catch((err) => {
@@ -56,7 +56,7 @@ router.get('/new-user', (req, res) => {
     firstName: req.session.firstName,
     userId: req.session.userId,
   };
-  res.render('pages/new-user', { title: 'Pantry Weasel', error: '', currentUser });
+  res.render('pages/new-user', { title: 'Pantry Manager', error: '', currentUser });
 });
 
 module.exports = router;

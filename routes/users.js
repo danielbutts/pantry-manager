@@ -92,9 +92,9 @@ const getUserDashboard = (req, res, next) => {
         });
         recipes[recipeId].ingredients = ingredients;
       });
-      const recent = Object.values(recipes);
+      // const recent = Object.values(recipes);
 
-      res.render('pages/dashboard', { title: 'Pantry Weasel', error: '', currentUser, favorites });
+      res.render('pages/dashboard', { title: 'Pantry Manager', error: '', currentUser, favorites });
     });
   })
   .catch((err) => {
