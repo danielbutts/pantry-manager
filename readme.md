@@ -44,7 +44,7 @@ $ node_modules/.bin/sequelize db:seed:all
 
 Upon visiting the homepage at `pantry-and-recipe-manager.herokuapp.com` you will be presented with a simple search bar.
 
-![Landing Page](/screenshots/PW-landing-page.png)
+![Landing Page](/screenshots/dashboard-screenshot.png)
 
 All you need to do is enter whatever ingredients you wish to cook with, separated by either a comma or a space, and the Yummly® recipe API will provide you with a number of recipes that fit those requirements.
 
@@ -57,11 +57,11 @@ Below the search bar you will see the most recent searches by other users to giv
 
 By registering and signing in with an email and password, you will have access to your **Pantry** by clicking on the link in the navbar. Once there, you can add and delete ingredients to keep track of what you have in stock. You can also generate search queries simply by clicking on ingredients within your pantry, so you don't have to type anything in or remember what you have in stock.
 
-![Landing Page](/screenshots/PW-pantry.png)
+![Landing Page](/screenshots/pantry-screenshot.png)
 
 Searches from either your pantry or the landing page will redirect to a results screen where you can look at the recipes returned from the Yummly API.
 
-![Landing Page](/screenshots/PW-results.png)
+![Landing Page](/screenshots/pantry-manager-screenshot.png)
 
 ## Future features:
 
